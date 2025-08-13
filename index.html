@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBTI 大厂文化与专业匹配器 (互联网专属版)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Noto Sans SC', sans-serif; }
+    html { scroll-behavior: smooth; }
+    .fade-in { animation: fadeIn 0.8s ease-in-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: translateY(0);} }
+  </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-500">
+  <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+    <header class="text-center mb-8 md:mb-12">
+      <h1 class="text-3xl md:text-5xl font-bold text-indigo-600 dark:text-indigo-400">MBTI 大厂文化与专业匹配器</h1>
+      <p class="mt-4 text-lg md:text-xl text-gray-600 dark:text-gray-400">为你的互联网大厂之路，提供100%全覆盖的职业路径规划。</p>
+    </header>
+
+    <div id="mbti-selector" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg">
+      <h2 class="text-2xl font-semibold mb-1 text-center"><span class="text-indigo-500">Step 1:</span> 请选择你的 MBTI 类型</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-8 gap-4 mt-6">
+        <button data-mbti="INTJ" class="mbti-btn bg-purple-100 text-purple-800 hover:bg-purple-200 dark:bg-purple-900/50 dark:text-purple-300 dark:hover:bg-purple-900">INTJ<span class="block text-xs">建筑师</span></button>
+        <button data-mbti="INTP" class="mbti-btn bg-purple-100 text-purple-800 hover:bg-purple-200 dark:bg-purple-900/50 dark:text-purple-300 dark:hover:bg-purple-900">INTP<span class="block text-xs">逻辑学家</span></button>
+        <button data-mbti="ENTJ" class="mbti-btn bg-purple-100 text-purple-800 hover:bg-purple-200 dark:bg-purple-900/50 dark:text-purple-300 dark:hover:bg-purple-900">ENTJ<span class="block text-xs">指挥官</span></button>
+        <button data-mbti="ENTP" class="mbti-btn bg-purple-100 text-purple-800 hover:bg-purple-200 dark:bg-purple-900/50 dark:text-purple-300 dark:hover:bg-purple-900">ENTP<span class="block text-xs">辩论家</span></button>
+        <button data-mbti="INFJ" class="mbti-btn bg-green-100 text-green-800 hover:bg-green-200 dark:bg-green-900/50 dark:text-green-300 dark:hover:bg-green-900">INFJ<span class="block text-xs">提倡者</span></button>
+        <button data-mbti="INFP" class="mbti-btn bg-green-100 text-green-800 hover:bg-green-200 dark:bg-green-900/50 dark:text-green-300 dark:hover:bg-green-900">INFP<span class="block text-xs">调停者</span></button>
+        <button data-mbti="ENFJ" class="mbti-btn bg-green-100 text-green-800 hover:bg-green-200 dark:bg-green-900/50 dark:text-green-300 dark:hover:bg-green-900">ENFJ<span class="block text-xs">主人公</span></button>
+        <button data-mbti="ENFP" class="mbti-btn bg-green-100 text-green-800 hover:bg-green-200 dark:bg-green-900/50 dark:text-green-300 dark:hover:bg-green-900">ENFP<span class="block text-xs">竞选者</span></button>
+        <button data-mbti="ISTJ" class="mbti-btn bg-blue-100 text-blue-800 hover:bg-blue-200 dark:bg-blue-900/50 dark:text-blue-300 dark:hover:bg-blue-900">ISTJ<span class="block text-xs">物流师</span></button>
+        <button data-mbti="ISFJ" class="mbti-btn bg-blue-100 text-blue-800 hover:bg-blue-200 dark:bg-blue-900/50 dark:text-blue-300 dark:hover:bg-blue-900">ISFJ<span class="block text-xs">守卫者</span></button>
+        <button data-mbti="ESTJ" class="mbti-btn bg-blue-100 text-blue-800 hover:bg-blue-200 dark:bg-blue-900/50 dark:text-blue-300 dark:hover:bg-blue-900">ESTJ<span class="block text-xs">总经理</span></button>
+        <button data-mbti="ESFJ" class="mbti-btn bg-blue-100 text-blue-800 hover:bg-blue-200 dark:bg-blue-900/50 dark:text-blue-300 dark:hover:bg-blue-900">ESFJ<span class="block text-xs">执政官</span></button>
+        <button data-mbti="ISTP" class="mbti-btn bg-yellow-100 text-yellow-800 hover:bg-yellow-200 dark:bg-yellow-900/50 dark:text-yellow-300 dark:hover:bg-yellow-900">ISTP<span class="block text-xs">鉴赏家</span></button>
+        <button data-mbti="ISFP" class="mbti-btn bg-yellow-100 text-yellow-800 hover:bg-yellow-200 dark:bg-yellow-900/50 dark:text-yellow-300 dark:hover:bg-yellow-900">ISFP<span class="block text-xs">探险家</span></button>
+        <button data-mbti="ESTP" class="mbti-btn bg-yellow-100 text-yellow-800 hover:bg-yellow-200 dark:bg-yellow-900/50 dark:text-yellow-300 dark:hover:bg-yellow-900">ESTP<span class="block text-xs">企业家</span></button>
+        <button data-mbti="ESFP" class="mbti-btn bg-yellow-100 text-yellow-800 hover:bg-yellow-200 dark:bg-yellow-900/50 dark:text-yellow-300 dark:hover:bg-yellow-900">ESFP<span class="block text-xs">表演者</span></button>
+      </div>
+    </div>
+
+    <div id="major-selector-container" class="mt-8 md:mt-12"></div>
+    <div id="result-container" class="mt-8 md:mt-12"></div>
+  </div>
+
+  <script>
+    // 扩充后的热门专业列表（新增适合互联网大厂方向）
+    const curatedMajors = [
+      '计算机科学', '软件工程', '数据科学', '统计学', '设计学', '心理学', '市场营销', '广告学', '新闻传播', '工商管理', '经济学', '金融学', '法学', '人力资源',
+      '人工智能', '数据科学与大数据技术', '大数据技术', '数据工程', '机器学习', '深度学习',
+      '网络空间安全', '信息安全', '网络工程', '信息管理与信息系统',
+      '电子信息工程', '通信工程', '物联网工程', '信息与计算科学',
+      '数学与应用数学', '应用统计学', '运筹学与控制',
+      '产品设计', '工业设计', '交互设计', '人机交互(HCI)', '数字媒体技术',
+      '电子商务', '管理科学与工程', '物流管理与工程',
+      '区块链工程', '云计算', '生物信息学', '金融科技', '智能制造工程',
+      '计算机视觉', '自然语言处理', '软件测试', '网络与新媒体'
+    ];
+
+    // 专业别名 -> 基础专业 映射
+    const majorAliasToBase = {
+      '人工智能': '数据科学',
+      '数据科学与大数据技术': '数据科学',
+      '大数据技术': '数据科学',
+      '数据工程': '数据科学',
+      '机器学习': '数据科学',
+      '深度学习': '数据科学',
+      '网络空间安全': '计算机科学',
+      '信息安全': '计算机科学',
+      '网络工程': '软件工程',
+      '信息管理与信息系统': '数据科学',
+      '电子信息工程': '计算机科学',
+      '通信工程': '计算机科学',
+      '物联网工程': '软件工程',
+      '信息与计算科学': '计算机科学',
+      '数学与应用数学': '统计学',
+      '应用统计学': '统计学',
+      '运筹学与控制': '统计学',
+      '产品设计': '设计学',
+      '工业设计': '设计学',
+      '交互设计': '设计学',
+      '人机交互(HCI)': '设计学',
+      '数字媒体技术': '设计学',
+      '电子商务': '市场营销',
+      '管理科学与工程': '工商管理',
+      '物流管理与工程': '工商管理',
+      '区块链工程': '计算机科学',
+      '云计算': '软件工程',
+      '生物信息学': '数据科学',
+      '金融科技': '金融学',
+      '智能制造工程': '软件工程',
+      '计算机视觉': '数据科学',
+      '自然语言处理': '数据科学',
+      '软件测试': '软件工程',
+      '网络与新媒体': '新闻传播'
+    };
+
+    // 注意：以下为原始的 mbtiData（从你的程序粘贴）。
+    const mbtiData = {
+            'INTJ': {
+                name: '建筑师',
+                companyCulture: '适合在重视<strong>独立思考、创新和效率</strong>的环境中工作。他们喜欢扁平化管理、目标导向的文化，讨厌冗长的会议和繁琐的流程。',
+                professionalPaths: {
+                    '计算机科学': { careers: [{name:'软件架构师', description:'设计软件系统的整体结构和蓝图。'}, {name:'算法工程师', description:'研究、设计和实现解决复杂计算问题的算法。'}, {name:'首席技术官(CTO)', description:'负责公司的整体技术战略和研发方向。'}], companies: ['Google', 'Microsoft', '华为', 'OpenAI'] },
+                    '软件工程': { careers: [{name:'系统架构师', description:'负责设计复杂软件系统的整体架构，确保其健壮性和可扩展性。'}, {name:'后端开发专家', description:'构建和优化高性能、高可用的服务器端系统。'}, {name:'技术主管(Tech Lead)', description:'领导一个工程团队，负责技术决策和项目执行。'}], companies: ['Amazon', 'Meta', '字节跳动', '阿里巴巴'] },
+                    '数据科学': { careers: [{name:'数据科学家', description:'从海量数据中提取洞见，构建预测模型以驱动业务决策。'}, {name:'机器学习架构师', description:'设计和构建可扩展的机器学习系统和平台。'}, {name:'数据产品经理', description:'负责定义和规划以数据为核心的产品。'}], companies: ['Netflix', 'Google AI', '百度', '腾讯'] },
+                    '统计学': { careers: [{name:'量化分析师', description:'使用统计模型进行金融市场分析和交易策略开发。'}, {name:'A/B测试平台专家', description:'设计和分析大规模在线实验，以优化产品功能。'}, {name:'高级数据分析师', description:'运用复杂的统计方法进行深度业务分析和预测。'}], companies: ['Citadel', '字节跳动', 'Amazon', 'Microsoft'] },
+                    '设计学': { careers: [{name:'信息架构师', description:'组织和构建复杂网站或应用的信息结构。'}, {name:'用户体验(UX)策略师', description:'规划长期的用户体验方向，确保与商业目标一致。'}, {name:'设计系统负责人', description:'创建和维护一套统一、高效的设计规范和组件。'}], companies: ['Apple', 'Google', '蚂蚁集团', 'IDEO'] },
+                    '心理学': { careers: [{name:'用户研究员(量化)', description:'设计和分析大规模问卷和数据，以理解用户行为。'}, {name:'认知心理学专家(人机交互)', description:'将认知心理学原理应用于设计，提升产品易用性。'}, {name:'数据分析师(用户行为)', description:'结合心理学知识和数据分析，为产品优化提供洞察。'}], companies: ['Google', 'Meta', '腾讯用户研究中心', '微软研究院'] },
+                    '市场营销': { careers: [{name:'市场策略总监', description:'制定长期的市场进入、品牌定位和增长战略。'}, {name:'数据驱动的市场经理', description:'利用数据分析来优化营销活动和衡量ROI。'}, {name:'产品市场经理(PMM)', description:'负责技术产品的市场定位和上市推广策略。'}], companies: ['宝洁', '联合利华', '字节跳动(商业化)', 'Apple'] },
+                    '广告学': { careers: [{name:'广告策略总监', description:'为广告活动制定整体策略，确保实现商业目标。'}, {name:'程序化广告专家', description:'设计和优化自动化广告投放系统的算法和逻辑。'}, {name:'广告效果分析师', description:'通过数据分析评估广告活动的效果和ROI。'}], companies: ['Google Ads', 'Meta Ads', 'The Trade Desk', '大型广告代理'] },
+                    '新闻传播': { careers: [{name:'科技评论家/专栏作家', description:'对科技行业和产品进行深入、理性的分析和评论。'}, {name:'媒体战略研究员', description:'分析媒体行业趋势，为媒体机构制定发展战略。'}, {name:'财经新闻分析师', description:'深入分析和报道复杂的经济和商业新闻。'}], companies: ['财新传媒', '彭博社', '华尔街日报', 'The Economist'] },
+                    '工商管理': { careers: [{name:'战略顾问', description:'为企业提供关于市场、竞争和增长等方面的建议。'}, {name:'首席战略官(CSO)', description:'负责制定和执行公司的整体战略计划。'}, {name:'运营优化顾问', description:'分析并改进业务流程以提高效率。'}], companies: ['麦肯锡', '波士顿咨询', '贝恩', '大型企业战略部'] },
+                    '经济学': { careers: [{name:'宏观经济研究员', description:'在大型金融机构或公司中，分析国家或全球的经济趋势。'}, {name:'计量经济学家', description:'使用统计方法来检验经济理论和预测未来趋势。'}, {name:'行业分析师', description:'深入研究特定行业的经济状况和未来前景。'}], companies: ['世界银行', '国际货币基金组织(IMF)', '顶级投行研究部'] },
+                    '金融学': { careers: [{name:'投资分析师', description:'研究公司和行业，为投资决策提供建议。'}, {name:'风险管理师', description:'识别、评估和监控投资组合或公司的金融风险。'}, {name:'金融产品经理', description:'设计和管理创新的金融产品，如ETF、衍生品等。'}], companies: ['高盛', '摩根士丹利', '中金公司', '贝莱德'] },
+                    '法学': { careers: [{name:'知识产权战略师', description:'为公司制定和管理专利、商标等知识产权组合。'}, {name:'科技法律顾问', description:'为科技公司提供数据隐私、网络安全等法律建议。'}, {name:'并购(M&A)律师', description:'处理公司合并、收购和重组中的法律事务。'}], companies: ['顶级律所', '大型科技公司法务部', '投行法务部'] },
+                    '人力资源': { careers: [{name:'人才发展体系设计师', description:'规划和设计公司的长期人才培养和领导力发展项目。'}, {name:'组织发展(OD)顾问', description:'运用诊断工具分析组织问题，并设计解决方案。'}, {name:'薪酬与绩效体系专家', description:'设计科学的薪酬结构和绩效管理体系。'}], companies: ['美世', '翰威特', '大型企业HR部门', '咨询公司'] }
+                }
+            },
+            'INTP': {
+                name: '逻辑学家',
+                companyCulture: '渴望一个能够提供<strong>极大自由度、鼓励探索和理论研究</strong>的工作环境。他们适合在学术氛围浓厚、规则束缚少的公司。',
+                professionalPaths: {
+                    '计算机科学': { careers: [{name:'人工智能研究员', description:'探索人工智能的前沿理论和算法。'}, {name:'安全专家', description:'研究和防御网络攻击，保护系统和数据安全。'}, {name:'系统架构师', description:'设计复杂的软件或硬件系统的整体结构。'}], companies: ['Google DeepMind', 'OpenAI', '旷视科技', '以太坊基金会'] },
+                    '软件工程': { careers: [{name:'高级后端工程师', description:'专注于构建复杂、高性能的服务器端系统和API。'}, {name:'分布式系统工程师', description:'设计和开发能够处理海量数据和请求的分布式系统。'}, {name:'编译器/编程语言开发者', description:'从事编程语言、编译器和开发工具的底层开发。'}], companies: ['Google', 'Microsoft', 'Mozilla', 'JetBrains'] },
+                    '数据科学': { careers: [{name:'算法科学家', description:'专注于研究和开发新的机器学习或数据挖掘算法。'}, {name:'数据挖掘专家', description:'从非结构化数据中发现隐藏的模式和知识。'}, {name:'自然语言处理(NLP)科学家', description:'研究如何让计算机理解和处理人类语言。'}], companies: ['Google AI', 'Meta AI', '百度', '顶尖大学实验室'] },
+                    '统计学': { careers: [{name:'统计学家', description:'在研究机构或科技公司从事高级统计建模和理论研究。'}, {name:'贝叶斯统计专家', description:'应用贝叶斯方法解决不确定性下的复杂推断问题。'}, {name:'因果推断科学家', description:'设计和分析实验，以确定变量之间的因果关系。'}], companies: ['Netflix', 'Airbnb', 'Microsoft Research', '学术机构'] },
+                    '设计学': { careers: [{name:'用户研究员(偏理论)', description:'深入研究人机交互的理论模型和用户认知过程。'}, {name:'交互设计师(偏逻辑)', description:'专注于设计复杂产品中清晰、一致的交互逻辑。'}, {name:'信息可视化设计师', description:'将复杂的数据和系统转化为清晰、直观的视觉表现。'}], companies: ['Google Research', 'Microsoft Research', 'Tableau', '学术界'] },
+                    '心理学': { careers: [{name:'实验心理学家', description:'设计和进行严格控制的实验来研究心理现象。'}, {name:'认知心理学家', description:'研究人类的思维、学习、记忆和解决问题的过程。'}, {name:'心理测量学家', description:'开发和评估心理测试的信度和效度。'}], companies: ['顶尖大学实验室', '神经科学研究所', '大型科技公司(人因工程)'] },
+                    '市场营销': { careers: [{name:'市场研究分析师', description:'设计和执行市场调查，分析数据以了解消费者和市场。'}, {name:'消费者行为研究员', description:'深入研究消费者决策过程背后的心理和行为模式。'}, {name:'营销数据科学家', description:'利用高级统计和机器学习模型来解决营销问题。'}], companies: ['尼尔森', '益普索', '互联网大厂用户增长部门'] },
+                    '广告学': { careers: [{name:'广告算法工程师', description:'设计和优化在线广告系统的竞价和推荐算法。'}, {name:'广告效果衡量专家', description:'设计复杂的模型来衡量和归因广告活动的效果。'}, {name:'市场研究员(广告方向)', description:'研究广告心理学和消费者对广告的反应。'}], companies: ['Google', 'Meta', '字节跳动', 'Amazon Ads'] },
+                    '新闻传播': { careers: [{name:'科学记者/编辑', description:'向公众清晰、准确地报道科学和技术领域的进展。'}, {name:'事实核查员', description:'对新闻报道和公开声明进行严谨的事实核查。'}, {name:'信息架构师(媒体)', description:'为新闻网站或内容平台设计清晰的信息结构。'}], companies: ['果壳网', 'Nature/Science', '路透社', '美联社'] },
+                    '工商管理': { careers: [{name:'管理顾问(研究型)', description:'专注于特定行业的深度研究，为咨询项目提供洞察。'}, {name:'系统分析师', description:'分析和设计信息系统，以解决业务问题。'}, {name:'商业智能(BI)分析师', description:'使用数据分析工具为企业决策提供数据支持。'}], companies: ['IBM咨询', '埃森哲', '德勤咨询'] },
+                    '经济学': { careers: [{name:'经济学理论研究员', description:'在大学或智库中从事经济学基础理论的研究。'}, {name:'计量经济学家', description:'开发和应用复杂的统计模型来分析经济数据。'}, {name:'算法经济学家', description:'在科技公司研究和设计市场机制与算法。'}], companies: ['芝加哥大学', '兰德公司', 'Google', 'Amazon'] },
+                    '金融学': { careers: [{name:'金融模型研究员', description:'开发和验证用于定价、风险和投资的复杂数学模型。'}, {name:'量化策略师', description:'设计和测试基于数据的自动化交易策略。'}, {name:'数据科学家(金融)', description:'将数据科学技术应用于解决金融领域的问题。'}], companies: ['文艺复兴科技', '各大券商研究所', '世界银行'] },
+                    '法学': { careers: [{name:'法律理论研究员', description:'在法学院或研究机构从事法学理论的研究。'}, {name:'科技伦理与法律研究员', description:'研究新兴技术带来的伦理和法律挑战。'}, {name:'专利工程师', description:'结合技术和法律知识，撰写和分析专利申请。'}], companies: ['高校', '立法机构', '知识产权代理机构'] },
+                    '人力资源': { careers: [{name:'人力资源科学家', description:'运用科学方法和数据分析来解决人力资源问题。'}, {name:'人才测评工具开发者', description:'设计和开发用于招聘和发展的心理测评工具。'}, {name:'薪酬数据分析师', description:'分析市场薪酬数据，为公司薪酬策略提供依据。'}], companies: ['Google(People Analytics)', '美世', '大型咨询公司'] }
+                }
+            },
+            'ENTJ': {
+                name: '指挥官',
+                companyCulture: '在<strong>结果导向、有挑战性、充满竞争</strong>的环境中茁壮成长。他们喜欢能够发挥领导才能、快速决策并看到成果的平台。',
+                professionalPaths: {
+                    '计算机科学': { careers: [{name:'技术项目经理', description:'领导技术团队，确保项目按时、按预算、高质量交付。'}, {name:'产品总监', description:'负责整个产品线的战略、路线图和商业成功。'}, {name:'工程总监', description:'管理多个工程团队，负责技术交付和团队发展。'}], companies: ['Amazon', 'Microsoft', '阿里巴巴', '华为'] },
+                    '软件工程': { careers: [{name:'工程经理/总监', description:'领导和管理软件工程团队，对交付结果负责。'}, {name:'技术产品管理(TPM)负责人', description:'领导TPM团队，协调大型复杂的技术项目。'}, {name:'创业公司CTO/技术合伙人', description:'作为创始人之一，负责组建技术团队和制定技术战略。'}], companies: ['Meta', 'Apple', '字节跳动', '各类创业公司'] },
+                    '数据科学': { careers: [{name:'数据科学团队负责人', description:'领导数据科学团队，将数据洞察转化为商业价值。'}, {name:'首席数据官(CDO)', description:'负责公司整体的数据战略、治理和应用。'}, {name:'数据驱动的业务负责人', description:'利用数据分析来领导一个业务部门或产品线。'}], companies: ['美团', '滴滴', '阿里巴巴', 'Netflix'] },
+                    '统计学': { careers: [{name:'量化基金经理', description:'管理一个量化投资基金，对投资业绩负责。'}, {name:'数据科学总监', description:'领导公司的数据科学部门，制定分析战略。'}, {name:'增长分析负责人', description:'领导团队通过数据和实验来驱动用户和收入增长。'}], companies: ['桥水基金', 'Two Sigma', '字节跳动', 'Google'] },
+                    '设计学': { careers: [{name:'设计总监', description:'领导设计团队，负责产品的整体设计方向和质量。'}, {name:'创意总监', description:'在广告或设计公司领导创意团队，产出核心创意。'}, {name:'用户体验负责人', description:'管理整个UX团队，制定UX战略和愿景。'}], companies: ['Apple', 'Frog Design', 'R/GA', '大型企业设计中心'] },
+                    '心理学': { careers: [{name:'组织心理学顾问', description:'作为外部专家，帮助企业解决领导力、效率和文化问题。'}, {name:'高管教练', description:'一对一地帮助企业高管提升领导力和决策能力。'}, {name:'人力资源咨询总监', description:'领导团队为客户提供人才管理和组织发展的解决方案。'}], companies: ['光辉国际', '怡安翰威特', '顶尖咨询公司', '独立执业'] },
+                    '市场营销': { careers: [{name:'首席营销官(CMO)', description:'负责公司整体市场营销战略和品牌建设的最高领导。'}, {name:'品牌总经理', description:'全面负责一个品牌或产品线的盈亏和市场表现。'}, {name:'销售总监', description:'领导销售团队，制定并完成销售目标。'}], companies: ['字节跳动', '宝洁', '欧莱雅', '可口可乐'] },
+                    '广告学': { careers: [{name:'广告公司CEO/高管', description:'负责广告公司的整体运营和战略方向。'}, {name:'客户群总监(GAD)', description:'管理多个重要客户的业务和团队。'}, {name:'首席策略官(CSO)', description:'在广告公司负责领导策略部门，为客户提供商业洞察。'}], companies: ['WPP', 'Omnicom', 'Publicis Groupe', '顶级广告公司'] },
+                    '新闻传播': { careers: [{name:'媒体集团CEO/高管', description:'负责一家大型媒体公司的战略和运营。'}, {name:'总编辑', description:'负责新闻机构的编辑方向和内容质量。'}, {name:'危机公关顾问', description:'在危机时刻为大公司或名人提供战略性的公关建议。'}], companies: ['迪士尼', '康卡斯特', '大型报业集团', '顶级公关公司'] },
+                    '工商管理': { careers: [{name:'CEO/COO', description:'作为首席执行官或首席运营官，管理公司的日常运营。'}, {name:'战略总监', description:'负责公司长期战略的规划和实施。'}, {name:'管理顾问(合伙人)', description:'为顶级客户提供高级别的商业战略咨询。'}, {name:'创业者', description:'创立并领导自己的公司。'}], companies: ['腾讯', '麦肯锡', '波士顿咨询', '自己创业'] },
+                    '经济学': { careers: [{name:'首席经济学家', description:'在大型金融机构或公司中，负责领导经济研究团队。'}, {name:'经济顾问(政府/企业)', description:'为高级决策者提供关于经济政策和商业战略的建议。'}, {name:'中央银行家', description:'参与制定和执行国家的货币政策。'}], companies: ['高盛', '摩根大通', '各国央行', '大型企业'] },
+                    '金融学': { careers: [{name:'投资银行家', description:'帮助公司进行融资、并购等大型资本运作。'}, {name:'基金经理', description:'管理投资基金，为投资者做出投资决策。'}, {name:'风险投资人', description:'投资于有高增长潜力的初创公司。'}, {name:'私募股权总监', description:'负责收购、管理和出售非上市公司股权。'}], companies: ['中信证券', '红杉资本', '高瓴资本', 'KKR'] },
+                    '法学': { careers: [{name:'律所高级合伙人', description:'在律师事务所中拥有所有权并承担管理职责。'}, {name:'首席法务官(CLO)', description:'公司最高法律负责人，管理所有法律事务。'}, {name:'并购交易律师', description:'专注于公司合并和收购的法律专家。'}], companies: ['红圈所', '顶级外所', '大型跨国公司法务部'] },
+                    '人力资源': { careers: [{name:'首席人力资源官(CHRO)', description:'作为公司高管，制定和执行与业务战略匹配的人才战略。'}, {name:'人才与组织咨询总监', description:'领导团队为客户提供组织设计、变革管理等咨询服务。'}, {name:'领导力发展负责人', description:'负责公司高层和高潜力人才的培养项目。'}], companies: ['顶尖科技公司HR部门', '大型咨询公司', '快速发展的企业'] }
+                }
+            },
+            'ENTP': {
+                name: '辩论家',
+                companyCulture: '喜欢<strong>快节奏、充满变化和新思想</strong>的环境。他们讨厌一成不变和官僚主义，在能够自由表达、挑战现状的公司里如鱼得水。',
+                professionalPaths: {
+                    '计算机科学': { careers: [{name:'产品经理', description:'定义产品的功能、需求和用户体验，并协调团队实现。'}, {name:'解决方案架构师', description:'为客户设计满足其业务需求的复杂技术解决方案。'}, {name:'技术布道师', description:'向开发者和社区推广公司的技术、产品和平台。'}], companies: ['腾讯', '字节跳动', '各类A轮、B轮创业公司'] },
+                    '软件工程': { careers: [{name:'增长黑客(Growth Engineer)', description:'开发和实验各种技术手段来驱动用户快速增长。'}, {name:'原型工程师', description:'快速构建新产品或功能的原型，以验证想法。'}, {name:'创业公司技术合伙人', description:'作为联合创始人，负责公司的技术方向和产品开发。'}], companies: ['Airbnb', 'Uber', 'Stripe', '早期创业公司'] },
+                    '数据科学': { careers: [{name:'数据产品经理', description:'构思和设计以数据和算法为核心的创新产品。'}, {name:'增长分析师', description:'通过数据分析和实验来寻找用户增长的机会点。'}, {name:'数据策略师', description:'帮助公司制定如何利用数据创造商业价值的战略。'}], companies: ['字节跳动', 'Meta', 'Spotify', '咨询公司'] },
+                    '统计学': { careers: [{name:'增长数据科学家', description:'设计和分析复杂的A/B测试，为产品增长提供决策依据。'}, {name:'市场研究(量化)分析师', description:'运用统计模型分析市场数据，洞察消费者行为。'}, {name:'体育数据分析师', description:'分析比赛数据，为球队提供战术建议或为媒体提供评论。'}], companies: ['Google', 'Booking.com', '尼尔森', 'ESPN'] },
+                    '设计学': { careers: [{name:'设计策略师', description:'将设计思维应用于解决复杂的商业和组织问题。'}, {name:'创新顾问', description:'帮助公司开发新产品、服务和商业模式。'}, {name:'工作坊引导师', description:'设计和引导创意工作坊，激发团队创新。'}], companies: ['IDEO', 'Frog Design', 'R/GA', '企业内部创新部门'] },
+                    '心理学': { careers: [{name:'消费心理学家', description:'研究消费者行为，为市场营销和产品设计提供洞察。'}, {name:'用户体验研究员(定性)', description:'通过深度访谈和观察来发掘用户未被满足的需求。'}, {name:'创新策略顾问', description:'运用心理学原理帮助企业进行产品和商业模式创新。'}], companies: ['IDEO', '尼尔森', '顶尖猎头公司', '广告公司'] },
+                    '市场营销': { careers: [{name:'产品市场经理(PMM)', description:'连接产品和市场，负责产品定位和上市策略。'}, {name:'品牌策略师', description:'定义和塑造品牌的长期发展方向和核心价值。'}, {name:'创意总监', description:'领导广告和营销活动的创意构思和执行。'}], companies: ['字节跳动', '宝洁', '奥美广告', '蓝色光标'] },
+                    '广告学': { careers: [{name:'创意策划/文案', description:'构思和撰写引人注目、打破常规的广告创意。'}, {name:'广告策略师', description:'为广告活动制定核心的沟通策略和洞察。'}, {name:'媒介创新经理', description:'探索和利用新兴的媒体渠道和技术进行广告传播。'}], companies: ['W+K', 'Droga5', 'BBDO', '顶级创意热店'] },
+                    '新闻传播': { careers: [{name:'调查记者', description:'深入调查复杂的社会和商业事件，挑战权威。'}, {name:'脱口秀主持人/撰稿人', description:'通过幽默和讽刺来评论时事。'}, {name:'公关(危机处理)', description:'在公司面临危机时，制定并执行快速、有效的沟通策略。'}], companies: ['南方周末', '顶级公关公司', '各大电视台', '播客平台'] },
+                    '工商管理': { careers: [{name:'管理顾问(创新方向)', description:'帮助企业进行创新和数字化转型。'}, {name:'创业者', description:'发现市场机会，并创建新的商业实体。'}, {name:'商业拓展总监(BD)', description:'为公司寻找新的市场、合作伙伴和商业机会。'}], companies: ['埃森哲', '德勤创新部门', '创业公司'] },
+                    '经济学': { careers: [{name:'行为经济学家', description:'研究心理学如何影响经济决策，并应用于产品和政策设计。'}, {name:'经济评论员', description:'在媒体上以犀利、独特的视角分析经济事件。'}, {name:'创业者(基于经济学洞察)', description:'基于对市场失灵或新机会的洞察来创立公司。'}], companies: ['世界银行', '经济类媒体', '初创公司', '咨询公司'] },
+                    '金融学': { careers: [{name:'风险投资人', description:'寻找并投资有潜力的初创企业。'}, {name:'金融科技产品经理', description:'设计和管理创新的金融技术产品。'}, {name:'股票评论员', description:'在媒体上分析和评论股票市场和公司。'}], companies: ['真格基金', 'IDG资本', 'YC', '金融科技创业公司'] },
+                    '法学': { careers: [{name:'辩护律师', description:'在法庭上为被告进行辩护。'}, {name:'知识产权律师', description:'处理专利、商标和版权相关的法律事务。'}, {name:'风险投资律师', description:'为风险投资交易提供法律咨询和服务。'}], companies: ['各大律所', '初创公司', '风险投资机构'] },
+                    '人力资源': { careers: [{name:'组织变革顾问', description:'帮助企业应对市场变化，进行组织结构和文化转型。'}, {name:'人才招募策略师', description:'设计创新的招聘渠道和方法，吸引顶尖人才。'}, {name:'高管猎头', description:'专注于为公司寻找CEO、CTO等高层领导者。'}], companies: ['咨询公司', '大型猎头公司', '快速发展的科技公司'] }
+                }
+            },
+            'INFJ': {
+                name: '提倡者',
+                companyCulture: '寻求<strong>有意义、有使命感</strong>的工作。他们希望自己的贡献能够帮助他人或推动社会进步。',
+                professionalPaths: {
+                    '计算机科学': { careers: [{name:'用户体验(UX)工程师', description:'结合设计和编程，创造流畅且有意义的用户界面。'}, {name:'技术作家', description:'清晰地解释复杂的技术概念，编写用户手册和文档。'}, {name:'教育科技产品经理', description:'设计和开发旨在改善学习体验的技术产品。'}], companies: ['Coursera', '可汗学院', '医疗科技公司'] },
+                    '软件工程': { careers: [{name:'前端开发工程师(重用户体验)', description:'专注于构建有同理心、易于使用的用户界面。'}, {name:'无障碍(Accessibility)工程师', description:'确保软件产品对所有用户，包括残障人士，都可用。'}, {name:'健康科技软件工程师', description:'开发用于改善健康和医疗服务的软件或应用。'}], companies: ['Apple', 'Microsoft', 'Google', '健康科技创业公司'] },
+                    '数据科学': { careers: [{name:'数据科学家(社会公益方向)', description:'利用数据分析解决贫困、健康、教育等社会问题。'}, {name:'用户研究数据分析师', description:'深入分析用户数据，以理解其深层需求和动机。'}, {name:'数据伦理顾问', description:'帮助公司制定和遵守负责任的数据使用政策。'}], companies: ['盖茨基金会', '世界银行', '大型科技公司的用户研究部门'] },
+                    '统计学': { careers: [{name:'公共卫生统计学家', description:'分析健康数据，以改善公共卫生政策和干预措施。'}, {name:'社会调查统计师', description:'设计和分析社会调查，以了解公众舆论和社会趋势。'}, {name:'教育统计学家', description:'分析教育数据，以评估和改善教育公平和质量。'}], companies: ['疾控中心(CDC)', '皮尤研究中心', '联合国儿童基金会'] },
+                    '设计学': { careers: [{name:'用户研究员', description:'通过定性研究方法深入理解用户，为设计提供依据。'}, {name:'服务设计师', description:'设计和改善旨在解决社会问题的整体服务体验。'}, {name:'社会创新设计师', description:'运用设计思维来应对复杂的社会挑战。'}], companies: ['简爱设计', '公共服务部门', '医疗机构'] },
+                    '心理学': { careers: [{name:'心理咨询师/治疗师', description:'为个人或团体提供专业的心理健康支持和治疗。'}, {name:'临床心理学家', description:'诊断和治疗复杂的心理障碍。'}, {name:'职业规划师', description:'帮助他人发现自己的兴趣和优势，规划职业生涯。'}], companies: ['医院心理科', '高校咨询中心', '私人执业', 'EAP服务公司'] },
+                    '市场营销': { careers: [{name:'品牌故事营销', description:'通过引人入胜的故事来传达品牌价值和使命。'}, {name:'内容策略师(深度)', description:'规划和创作有深度、有价值的内容来吸引和教育受众。'}, {name:'非营利组织营销经理', description:'为非营利组织进行筹款和宣传活动。'}], companies: ['Patagonia', '各类公益基金会', 'B Corp认证企业'] },
+                    '广告学': { careers: [{name:'公益广告策划', description:'为非营利组织或社会议题策划有影响力的广告活动。'}, {name:'品牌价值观沟通专家', description:'负责向公众传达公司的核心价值观和社会责任。'}, {name:'内容营销(教育/健康)', description:'在教育或健康领域创作有深度、有帮助的内容。'}], companies: ['奥美(社会营销)', '公益组织', '教育和健康品牌'] },
+                    '新闻传播': { careers: [{name:'深度报道记者(社会议题)', description:'深入调查和报道关于社会公正、人权等议题。'}, {name:'纪录片制片人', description:'制作能够引发社会反思和共鸣的纪录片。'}, {name:'非营利组织传播官', description:'负责非营利组织的对外沟通和宣传工作。'}], companies: ['南方周末', '财新', 'Discovery', '公益基金会'] },
+                    '工商管理': { careers: [{name:'组织发展(OD)顾问', description:'帮助组织改善其结构、文化和流程，以提升效能。'}, {name:'人力资源经理(员工发展)', description:'负责员工的培训、职业发展和成长。'}, {name:'社会企业创始人', description:'创建以解决社会问题为首要目标的商业企业。'}], companies: ['Google(人力资源)', '联合利华', '各类NPO/NGO'] },
+                    '经济学': { careers: [{name:'发展经济学家', description:'研究贫困、不平等等问题，并为非营利组织或政府提供政策建议。'}, {name:'公共政策分析师', description:'分析经济政策对社会福祉的影响。'}, {name:'社会企业经济顾问', description:'帮助社会企业建立可持续的商业模式。'}], companies: ['世界银行', '乐施会', '盖茨基金会', '政府研究部门'] },
+                    '金融学': { careers: [{name:'ESG分析师', description:'评估公司的环境、社会和治理表现。'}, {name:'影响力投资经理', description:'投资于旨在产生积极社会或环境影响的公司。'}, {name:'普惠金融研究员', description:'研究如何为服务不足的群体提供金融服务。'}], companies: ['晨星', '贝莱德(ESG部门)', '蚂蚁集团'] },
+                    '法学': { careers: [{name:'人权律师', description:'致力于保护和促进个人和群体的人权。'}, {name:'公益律师', description:'为弱势群体或公共利益提供免费或低收费的法律服务。'}, {name:'环境法律师', description:'处理与环境保护相关的法律案件和政策。'}], companies: ['公益法律组织', '联合国机构', '环保NGO'] },
+                    '人力资源': { careers: [{name:'人才发展经理', description:'负责员工的培训和职业成长，帮助他们实现潜力。'}, {name:'组织发展(OD)专家', description:'致力于改善组织文化和员工福祉。'}, {name:'企业教练(Coach)', description:'一对一地帮助员工提升绩效和个人成长。'}], companies: ['重视员工发展的公司', '咨询公司', '非营利组织'] }
+                }
+            },
+            'INFP': {
+                name: '调停者',
+                companyCulture: '渴望在<strong>和谐、支持性强、能表达创造力</strong>的环境中工作。他们重视个人价值和真实性。',
+                professionalPaths: {
+                    '计算机科学': { careers: [{name:'前端开发(重视觉)', description:'专注于实现富有美感和创意的用户界面。'}, {name:'UI开发工程师', description:'将设计师的视觉稿精确地转化为交互式网页或应用。'}, {name:'创意编程师', description:'使用代码作为媒介进行艺术创作。'}], companies: ['B站', '小红书', '游戏公司(如米哈游)'] },
+                    '软件工程': { careers: [{name:'前端工程师(用户体验方向)', description:'专注于构建富有情感和美感的用户界面。'}, {name:'UI动效工程师', description:'使用代码实现流畅、有趣的界面动画效果。'}, {name:'独立游戏开发者', description:'独立或与小团队一起创作充满个人表达的游戏。'}], companies: ['Apple', '各类创意工作室', '独立开发者'] },
+                    '数据科学': { careers: [{name:'数据可视化设计师', description:'将数据转化为富有美感和故事性的视觉作品。'}, {name:'用户研究(数据分析)', description:'分析用户数据，以同理心理解用户故事和需求。'}, {name:'内容推荐算法伦理研究员', description:'研究推荐算法如何影响用户福祉和内容生态。'}], companies: ['Tableau', 'Airbnb', 'Spotify', '内容平台'] },
+                    '统计学': { careers: [{name:'社会调查统计师', description:'通过数据分析来理解社会现象和公众态度。'}, {name:'用户研究(量化)', description:'设计问卷和分析数据，以理解用户的情感和满意度。'}, {name:'数据记者', description:'用数据来讲述关于人的故事。'}], companies: ['皮尤研究中心', '盖洛普', 'FiveThirtyEight', '非营利组织'] },
+                    '设计学': { careers: [{name:'UI/UX设计师', description:'设计既美观又易于使用的数字产品界面和体验。'}, {name:'插画师', description:'为书籍、杂志、广告等创作独特的视觉图像。'}, {name:'平面设计师', description:'进行标志、海报、书籍等视觉传达设计。'}], companies: ['自由职业', '设计工作室', '皮克斯'] },
+                    '心理学': { careers: [{name:'心理咨询师', description:'以同理心倾听并帮助来访者探索内心世界。'}, {name:'艺术治疗师', description:'运用绘画、音乐等艺术形式进行心理治疗。'}, {name:'叙事治疗师', description:'帮助来访者重写自己的生命故事，找到力量。'}], companies: ['私人执业', '艺术治疗工作室', '社区心理服务中心', '高校'] },
+                    '市场营销': { careers: [{name:'内容创作者', description:'创作文章、视频等内容来表达观点和情感。'}, {name:'社交媒体经理(重社区)', description:'建立和维护一个充满情感连接的在线社区。'}, {name:'品牌故事讲述者', description:'通过文字或影像讲述能够触动人心的品牌故事。'}], companies: ['豆瓣', '知乎', '出版社', '生活方式品牌'] },
+                    '广告学': { careers: [{name:'广告文案', description:'撰写富有创意和情感感染力的广告文案。'}, {name:'内容营销策划', description:'策划和创作能够与用户建立情感联系的内容。'}, {name:'公益广告策划', description:'为社会议题或非营利组织创作有意义的广告。'}], companies: ['广告公司的创意部门', '内容平台', '品牌方市场部'] },
+                    '新闻传播': { careers: [{name:'作家/小说家', description:'创作虚构或非虚构的文学作品。'}, {name:'编辑(文学/生活方式)', description:'在出版社或杂志社负责稿件的筛选和编辑。'}, {name:'内容创作者/博主', description:'在个人博客或社交媒体上分享自己的思想和生活。'}], companies: ['出版社', '新媒体', '自由职业', '影视公司'] },
+                    '工商管理': { careers: [{name:'人力资源(员工关怀)', description:'负责员工福利、心理健康支持和团队建设活动。'}, {name:'企业文化专员', description:'组织活动和项目以推广公司的核心价值观。'}, {name:'小型工作室创始人', description:'创立和经营一个符合自己价值观的创意工作室。'}], companies: ['各类中小型创意公司', '书店', '文化机构'] },
+                    '经济学': { careers: [{name:'发展经济学研究员(质性)', description:'通过田野调查和访谈来研究贫困和发展问题。'}, {name:'幸福经济学研究员', description:'研究经济因素与个人幸福感之间的关系。'}, {name:'非营利组织政策分析师', description:'为非营利组织提供经济学角度的政策建议。'}], companies: ['乐施会', '联合国开发计划署', '学术机构'] },
+                    '金融学': { careers: [{name:'ESG分析师', description:'评估公司的环境、社会和治理表现，侧重于社会责任。'}, {name:'社会责任投资顾问', description:'帮助客户将资金投向符合其价值观的公司。'}, {name:'金融记者/编辑', description:'以人文视角报道和解读金融事件。'}], companies: ['晨星', '嘉信理财', '财新传媒'] },
+                    '法学': { careers: [{name:'法律援助工作者', description:'在非营利机构为弱势群体提供法律支持。'}, {name:'知识产权(艺术方向)律师', description:'保护艺术家和创作者的版权和商标权。'}, {name:'调解员', description:'作为中立第三方，帮助争议双方达成和解。'}], companies: ['法律援助中心', '版权代理公司', '调解中心'] },
+                    '人力资源': { careers: [{name:'员工关系专员', description:'致力于营造一个充满关怀和支持的工作环境。'}, {name:'企业文化专员', description:'通过组织活动和沟通来传递公司的价值观。'}, {name:'培训师(软技能方向)', description:'进行沟通、同理心等软技能的培训。'}], companies: ['强调人文关怀的公司', '创意产业', '非营利组织'] }
+                }
+            },
+            'ENFJ': {
+                name: '主人公',
+                companyCulture: '在<strong>以人为本、强调团队合作和共同成长</strong>的文化中表现出色。他们是天生的组织者和激励者。',
+                professionalPaths: {
+                    '计算机科学': { careers: [{name:'技术项目经理', description:'领导和激励技术团队，促进沟通与协作。'}, {name:'产品经理(用户导向)', description:'深切关注用户需求，并将其转化为产品功能。'}, {name:'技术团队主管(Team Lead)', description:'不仅管理任务，更关心团队成员的成长和福祉。'}], companies: ['Salesforce', 'Atlassian', '美团'] },
+                    '软件工程': { careers: [{name:'工程经理(Engineering Manager)', description:'负责管理、指导和发展一个软件工程师团队。'}, {name:'敏捷教练(Agile Coach)', description:'帮助团队更好地实践敏捷开发，改善协作流程。'}, {name:'客户成功工程师', description:'作为技术专家，帮助关键客户解决问题并实现价值。'}], companies: ['Google', 'Microsoft', 'Spotify', 'ThoughtWorks'] },
+                    '数据科学': { careers: [{name:'数据科学经理', description:'领导数据科学团队，将技术洞察与业务目标相结合。'}, {name:'分析顾问', description:'与业务部门合作，将复杂的数据分析结果转化为可行的建议。'}, {name:'数据布道师', description:'在公司内外推广数据文化和数据驱动的决策。'}], companies: ['Tableau', 'Palantir', '咨询公司', '大型企业数据部门'] },
+                    '统计学': { careers: [{name:'数据分析经理', description:'领导一个数据分析团队，负责向业务部门提供洞察。'}, {name:'用户研究(量化)经理', description:'领导团队通过大规模数据分析来理解用户。'}, {name:'统计咨询师', description:'为没有统计背景的客户提供专业的统计分析服务。'}], companies: ['Meta', 'Amazon', '益普索', '咨询公司'] },
+                    '设计学': { careers: [{name:'设计项目经理', description:'协调设计师、客户和其他利益相关者，推动项目进展。'}, {name:'用户体验负责人', description:'领导UX团队，倡导以用户为中心的设计文化。'}, {name:'工作坊引导师', description:'设计和引导协作工作坊，促进团队共创。'}], companies: ['Continuum', 'Publicis Sapient', '大型企业设计团队'] },
+                    '心理学': { careers: [{name:'心理咨询师', description:'善于建立信任关系，引导来访者成长。'}, {name:'组织心理学家', description:'致力于改善团队动力、领导力和组织文化。'}, {name:'高管教练', description:'一对一辅导企业领导者，帮助他们提升领导力。'}], companies: ['咨询公司', '大型企业HR部门', '私人执业'] },
+                    '市场营销': { careers: [{name:'客户关系总监', description:'负责公司最重要的客户关系策略和维护。'}, {name:'市场总监', description:'领导市场团队，制定和执行整体市场策略。'}, {name:'社区运营总监', description:'建立和管理庞大而活跃的用户社区。'}], companies: ['小米', '蔚来汽车', '各类消费品公司'] },
+                    '广告学': { careers: [{name:'客户总监(Account Director)', description:'在广告公司负责重要客户的战略合作和关系维护。'}, {name:'品牌总监', description:'在品牌方负责品牌的长期建设和沟通策略。'}, {name:'公关总监', description:'领导团队负责公司的公共关系和声誉管理。'}], companies: ['奥美', '蓝色光标', '宝洁', '阿里巴巴'] },
+                    '新闻传播': { careers: [{name:'公共关系总监', description:'负责制定和执行公司的整体公共关系战略。'}, {name:'发言人', description:'作为组织的代表，向媒体和公众发布信息。'}, {name:'制片人', description:'组织和协调团队，制作电视节目或电影。'}], companies: ['顶级公关公司', '大型企业公关部', '政府新闻办', '电视台'] },
+                    '工商管理': { careers: [{name:'人力资源总监(HRD)', description:'全面负责人力资源战略，吸引、发展和保留人才。'}, {name:'企业培训总监', description:'负责设计和实施公司的培训和发展计划。'}, {name:'管理顾问(人才与组织)', description:'为企业提供组织变革和人才管理方面的咨询。'}], companies: ['字节跳动', '腾讯', '美世咨询'] },
+                    '经济学': { careers: [{name:'公共政策分析师', description:'分析经济政策对社会的影响，并向公众和决策者沟通。'}, {name:'投资者关系经理', description:'负责公司与经济分析师和投资者之间的沟通。'}, {name:'经济学教师/教授', description:'充满激情地向学生传授经济学知识。'}], companies: ['政府研究机构', '上市公司', '高校'] },
+                    '金融学': { careers: [{name:'财富管理顾问', description:'与客户建立信任关系，帮助他们管理和增长财富。'}, {name:'投资者关系总监', description:'负责公司与投资者之间的沟通和关系维护。'}, {name:'金融培训师', description:'为金融从业人员或客户提供培训和教育。'}], companies: ['瑞士银行(UBS)', '大型商业银行', '保险公司'] },
+                    '法学': { careers: [{name:'律所客户关系经理', description:'负责维护和发展律师事务所的客户关系。'}, {name:'公共关系律师', description:'代表客户处理与公众和媒体相关的法律问题。'}, {name:'政治家/说客', description:'代表特定利益群体影响公共政策和立法。'}], companies: ['律所市场部', '政府机构', '高校'] },
+                    '人力资源': { careers: [{name:'人力资源业务伙伴(HRBP)', description:'作为业务部门的战略伙伴，提供全方位的人力资源支持。'}, {name:'招聘经理', description:'领导招聘团队，为公司吸引和招募优秀人才。'}, {name:'培训与发展经理', description:'负责员工的成长和学习，设计和实施培训项目。'}], companies: ['所有大中型公司', '特别是快速发展的科技公司'] }
+                }
+            },
+            'ENFP': {
+                name: '竞选者',
+                companyCulture: '喜欢<strong>充满活力、鼓励创新和人际交往</strong>的环境。他们讨厌沉闷和束缚。',
+                professionalPaths: {
+                    '计算机科学': { careers: [{name:'产品经理', description:'充满激情地探索用户需求，定义富有创意的产品。'}, {name:'用户增长产品经理', description:'通过创新的想法和实验来驱动用户数量的增长。'}, {name:'技术布道师', description:'以富有感染力的方式向外界推广公司的技术和愿景。'}], companies: ['B站', '小红书', '抖音', '创业公司'] },
+                    '软件工程': { careers: [{name:'前端开发工程师(重交互创新)', description:'专注于创造新颖、有趣的网页和应用交互体验。'}, {name:'开发者关系(DevRel)工程师', description:'通过写文章、做演讲、组织活动来建立开发者社区。'}, {name:'创意技术专家(Creative Technologist)', description:'在广告或营销团队中，用技术实现富有创意的想法。'}], companies: ['Google', 'Twilio', 'R/GA', 'AKQA'] },
+                    '数据科学': { careers: [{name:'数据故事讲述者', description:'将复杂的数据分析结果转化为引人入胜的故事和可视化。'}, {name:'用户增长分析师', description:'通过数据发现用户行为模式，并提出创新的增长策略。'}, {name:'产品分析师', description:'分析产品数据，为产品迭代和新功能提供创意。'}], companies: ['Airbnb', 'Spotify', 'Pinterest', '各类内容平台'] },
+                    '统计学': { careers: [{name:'市场研究分析师', description:'通过数据洞察消费者的新趋势和潜在需求。'}, {name:'用户行为分析师', description:'分析用户数据，并向产品团队生动地讲述用户故事。'}, {name:'数据可视化专家', description:'设计和创造能够启发灵感的交互式数据图表。'}], companies: ['尼尔森', '字节跳动', '小红书', '科技媒体'] },
+                    '设计学': { careers: [{name:'创意总监', description:'领导团队构思和执行广告或品牌的核心创意。'}, {name:'广告设计师', description:'为广告活动创作核心的视觉元素。'}, {name:'UX设计师(偏社交)', description:'设计能够促进用户互动和社区感的社交产品。'}], companies: ['R/GA', 'AKQA', '广告公司'] },
+                    '心理学': { careers: [{name:'心理咨询师(人本/存在主义)', description:'鼓励来访者自我探索和成长。'}, {name:'培训师(创造力/沟通)', description:'设计和讲授激发创造力和改善人际关系的课程。'}, {name:'广告心理学顾问', description:'运用心理学原理为广告创意和策略提供建议。'}], companies: ['广告公司', '培训机构', '互联网公司', '自由职业'] },
+                    '市场营销': { careers: [{name:'创意文案', description:'撰写引人注目、富有想象力的广告语和营销内容。'}, {name:'媒介策划', description:'为广告活动策划和选择最有效的媒体渠道组合。'}, {name:'品牌战略师', description:'为品牌注入活力和故事性，规划其长期发展路径。'}], companies: ['奥美', '环时互动', 'WPP集团', 'MCN机构'] },
+                    '广告学': { careers: [{name:'创意策划/文案', description:'构思和撰写引人注目、打破常规的广告创意。'}, {name:'客户主管(AE)', description:'与客户沟通，理解其需求并向创意团队传达。'}, {name:'社交媒体营销专家', description:'在微博、小红书等平台策划和执行创意营销活动。'}], companies: ['W+K', 'Droga5', 'BBDO', '顶级创意热店'] },
+                    '新闻传播': { careers: [{name:'记者/主持人(人物/生活方式)', description:'采访有趣的人物，报道新鲜的生活方式。'}, {name:'内容创作者/视频博主', description:'制作有趣、有启发性的视频内容。'}, {name:'公关专员/经理', description:'负责与媒体和公众沟通，建立良好的品牌形象。'}], companies: ['新媒体', '电视台', '公关公司', 'MCN机构'] },
+                    '工商管理': { careers: [{name:'市场拓展(BD)', description:'通过建立合作关系为公司开拓新的市场和业务。'}, {name:'创新项目经理', 'description':'领导跨职能团队，将创新的想法变为现实。'}, {name:'人力资源(招聘/文化)', description:'负责招聘优秀人才和营造充满活力的公司文化。'}], companies: ['WeWork', '各类快速消费品公司', '娱乐公司'] },
+                    '经济学': { careers: [{name:'经济学记者/博主', description:'以通俗易懂的方式向公众解释经济学概念和事件。'}, {name:'行为经济学应用顾问', description:'帮助公司运用行为经济学原理来优化产品和营销。'}, {name:'新兴市场分析师', description:'探索和分析新兴市场的商业机会。'}], companies: ['经济类媒体', '咨询公司', '互联网公司'] },
+                    '金融学': { careers: [{name:'风险投资人(偏社交)', description:'通过广泛的社交网络来发现和投资早期的创业项目。'}, {name:'金融科技市场经理', description:'为创新的金融产品制定和执行市场推广计划。'}, {name:'理财博主/KOL', description:'通过社交媒体分享理财知识和经验，影响大众。'}], companies: ['YC', '天使投资机构', '金融科技公司'] },
+                    '法学': { careers: [{name:'公关律师', description:'处理涉及公司声誉和公众形象的法律事务。'}, {name:'娱乐法律师', description:'为艺人、制片公司等提供合同和版权方面的法律服务。'}, {name:'创业法律顾问', description:'为初创企业提供全方位的法律支持和建议。'}], companies: ['娱乐/媒体公司法务部', '专注于初创企业的律所'] },
+                    '人力资源': { careers: [{name:'招聘专员/经理', description:'充满激情地向候选人介绍公司，吸引最优秀的人才。'}, {name:'企业文化与员工活动专家', description:'策划和组织各种活动，营造积极、有趣的工作氛围。'}, {name:'雇主品牌经理', description:'负责塑造和推广公司在人才市场的形象。'}], companies: ['互联网公司', '创业公司', 'MNC'] }
+                }
+            },
+            'ISTJ': {
+                name: '物流师',
+                companyCulture: '偏爱<strong>结构清晰、规则明确、重视传统和稳定</strong>的环境。他们是秩序的维护者。',
+                professionalPaths: {
+                    '计算机科学': { careers: [{name:'后端开发工程师', description:'构建稳定、可靠的服务器端应用程序和数据库。'}, {name:'数据库管理员(DBA)', description:'负责数据库的设计、安装、监控、维护和性能优化。'}, {name:'运维工程师(SRE)', description:'确保生产系统的高可用性、稳定性和性能。'}], companies: ['银行科技部', 'IBM', 'Oracle', 'SAP'] },
+                    '软件工程': { careers: [{name:'测试工程师(QA)', description:'通过系统化的测试来确保软件的质量和可靠性。'}, {name:'发布工程师(Release Engineer)', description:'管理和自动化软件的构建、测试和发布流程。'}, {name:'配置管理员', description:'负责维护和管理软件项目的版本控制和配置。'}], companies: ['Microsoft', 'Cisco', '大型金融机构科技部'] },
+                    '数据科学': { careers: [{name:'数据仓库工程师', description:'设计和构建用于存储和分析大量数据的系统。'}, {name:'数据治理专家', description:'制定和实施数据质量、安全和合规的标准。'}, {name:'BI报表开发工程师', description:'开发和维护为业务部门提供决策支持的报表系统。'}], companies: ['Oracle', 'SAP', 'Teradata', '传统行业数据部门'] },
+                    '统计学': { careers: [{name:'数据分析师', description:'收集和分析数据，以衡量业务表现和活动效果。'}, {name:'质量控制统计师', description:'运用统计过程控制(SPC)来监控和改进产品质量。'}, {name:'风险建模师(信用)', description:'开发模型来评估个人或企业的信用风险。'}], companies: ['银行', '征信机构', '制造业', '大型零售商'] },
+                    '设计学': { careers: [{name:'技术UI设计师', description:'专注于将设计稿精确地转化为符合技术规范的UI资产。'}, {name:'设计规范制定者', description:'创建和维护详细的设计系统和组件库。'}, {name:'设计质量保证(QA)', description:'系统地检查设计实现是否符合设计稿和规范。'}], companies: ['华为', '大型企业设计部门', '金融科技公司'] },
+                    '心理学': { careers: [{name:'心理测量学家', description:'严谨地开发和验证心理测试的信度和效度。'}, {name:'实验心理学技术员', description:'负责心理学实验室的设备管理和实验执行。'}, {name:'人力资源数据分析师', description:'系统地分析员工数据，以评估和改进人力资源政策。'}], companies: ['专业测评公司', '高校实验室', '大型企业HR部门', '司法鉴定机构'] },
+                    '市场营销': { careers: [{name:'营销运营(Marketing Ops)', description:'管理和优化营销部门的流程、技术和数据。'}, {name:'CRM系统管理员', description:'管理客户关系管理系统，确保数据准确。'}, {name:'预算分析师', description:'负责营销预算的规划、分配和跟踪。'}], companies: ['大型企业市场部', '数据分析公司', 'Salesforce'] },
+                    '广告学': { careers: [{name:'广告投放优化师', description:'负责管理和优化数字广告账户，确保ROI。'}, {name:'广告运营专员', description:'负责广告活动的上线、监控和数据报告。'}, {name:'广告审核专员', description:'根据平台政策审核广告内容的合规性。'}], companies: ['Google', 'Meta', '大型广告代理(媒介部门)', '品牌方'] },
+                    '新闻传播': { careers: [{name:'资料管理员/研究员', description:'为新闻机构提供准确的背景资料和数据支持。'}, {name:'事实核查员', description:'对新闻稿件中的事实和数据进行核对。'}, {name:'媒体监测分析师', description:'跟踪和分析与公司相关的媒体报道。'}], companies: ['新华社', '路透社', '企业舆情监测部门', '图书馆'] },
+                    '工商管理': { careers: [{name:'运营经理', description:'负责公司日常运营的规划、协调和监督。'}, {name:'供应链经理', description:'管理从采购到交付的整个供应链流程。'}, {name:'合规经理', description:'确保公司遵守所有相关的法律、法规和行业标准。'}], companies: ['京东物流', '顺丰速运', '制造业龙头企业'] },
+                    '经济学': { careers: [{name:'经济数据分析师', description:'负责收集、整理和分析宏观或行业经济数据。'}, {name:'审计师', description:'审查公司的财务记录和内部控制，确保合规。'}, {name:'合规分析师(金融)', description:'确保金融机构的运营符合监管要求。'}], companies: ['国家统计局', '四大会计师事务所', '银行合规部'] },
+                    '金融学': { careers: [{name:'审计师', description:'审查公司的财务报表，确保其准确性和合规性。'}, {name:'财务分析师', description:'分析财务数据，为公司的财务决策提供支持。'}, {name:'信贷审批员', description:'评估贷款申请人的信用风险，决定是否批准贷款。'}], companies: ['普华永道(PwC)', '德勤(DTT)', '安永(EY)', '毕马威(KPMG)'] },
+                    '法学': { careers: [{name:'律师(合同/税务)', description:'专注于起草、审查合同或处理税务相关的法律事务。'}, {name:'合规经理', description:'在企业内部负责确保公司运营符合法律法规。'}, {name:'合同管理员', description:'管理公司的合同生命周期，从起草到归档。'}], companies: ['司法系统', '银行法务部', '大型国企'] },
+                    '人力资源': { careers: [{name:'薪酬福利专员/经理', description:'负责员工薪资、社保、福利的准确计算和发放。'}, {name:'人力资源信息系统(HRIS)专员', description:'管理和维护公司的人力资源信息系统。'}, {name:'合规专员(劳动法)', description:'确保公司的招聘、合同、解雇等流程符合劳动法规定。'}], companies: ['大中型企业HR部门', '人力资源外包公司'] }
+                }
+            },
+            'ISFJ': {
+                name: '守卫者',
+                companyCulture: '在<strong>稳定、和谐、能为他人提供具体帮助</strong>的环境中感到满足。他们重视团队合作和人际关系。',
+                professionalPaths: {
+                    '计算机科学': { careers: [{name:'技术支持工程师', description:'耐心、细致地帮助用户解决技术问题。'}, {name:'IT管理员', description:'负责维护公司的IT基础设施，确保其稳定运行。'}, {name:'用户手册编写', description:'编写清晰、易懂的用户指南和帮助文档。'}], companies: ['Apple(Genius Bar)', 'Microsoft', '企业IT部门'] },
+                    '软件工程': { careers: [{name:'测试工程师(QA)', description:'一丝不苟地找出软件中的缺陷，确保产品质量。'}, {name:'前端开发工程师(注重细节)', description:'精确地将设计稿转化为高质量的网页或应用界面。'}, {name:'客户支持工程师', description:'为客户提供深入的技术支持和问题解决方案。'}], companies: ['Salesforce', 'Zoom', '大型软件公司的支持部门'] },
+                    '数据科学': { careers: [{name:'数据标注与质量审核员', description:'负责为机器学习模型准备和审核高质量的训练数据。'}, {name:'数据管理员', description:'负责维护数据集的准确性、完整性和可用性。'}, {name:'BI报表开发与维护', description:'根据业务需求，细致地开发和维护数据报表。'}], companies: ['数据堂', '海天瑞声', '大型企业的数据中台部门'] },
+                    '统计学': { careers: [{name:'数据分析师(运营方向)', description:'负责日常业务数据的监控、报告和初步分析。'}, {name:'临床数据管理员', description:'在医疗或制药行业，负责管理临床试验数据的准确性。'}, {name:'调查执行专员', description:'负责市场调查或社会调查问卷的发放和数据回收。'}], companies: ['互联网公司运营部门', 'IQVIA', '尼尔森'] },
+                    '设计学': { careers: [{name:'UI设计师(像素级还原)', description:'以极高的精度将视觉设计稿转化为数字界面。'}, {name:'视觉设计师', description:'创作符合品牌规范的、细致的视觉设计作品。'}, {name:'设计助理', description:'协助设计师完成设计任务和整理文件。'}], companies: ['设计公司', '出版社', '企业市场部'] },
+                    '心理学': { careers: [{name:'学校心理辅导员', description:'为学生提供心理健康支持和成长指导。'}, {name:'心理咨询师(支持性疗法)', description:'为来访者提供一个安全、被倾听的空间。'}, {name:'社工', description:'在社区或机构中为有需要的人群提供实际帮助和支持。'}], companies: ['中小学', '社区服务中心', '医院康复科', '社会福利机构'] },
+                    '市场营销': { careers: [{name:'客户服务经理', description:'领导客户服务团队，提供卓越的客户支持。'}, {name:'CRM运营专员', description:'维护客户关系管理系统，确保客户信息准确。'}, {name:'活动执行', description:'负责营销活动的现场协调和后勤保障。'}], companies: ['酒店行业', '零售行业', '服务业'] },
+                    '广告学': { careers: [{name:'广告运营专员', description:'负责广告活动的上线、监控和数据报告。'}, {name:'客户执行(AE)', description:'在广告公司负责客户的日常沟通和项目跟进。'}, {name:'媒介执行', description:'负责与媒体沟通，执行广告排期和购买。'}], companies: ['广告代理公司', '品牌方市场部', '媒体平台'] },
+                    '新闻传播': { careers: [{name:'内部沟通专员', description:'负责公司内部的信息发布和员工沟通。'}, {name:'活动执行', description:'负责新闻发布会、公司年会等活动的具体执行工作。'}, {name:'资料管理员', description:'为媒体机构整理和保管新闻资料。'}], companies: ['大型企业内部沟通部门', '公关公司', '电视台'] },
+                    '工商管理': { careers: [{name:'行政经理', description:'负责公司的日常行政管理和后勤保障。'}, {name:'办公室主任', description:'确保办公室的高效、有序运作。'}, {name:'项目协调员', description:'协助项目经理进行任务跟踪和沟通协调。'}], companies: ['政府机关', '事业单位', '大型稳定企业'] },
+                    '经济学': { careers: [{name:'经济数据整理员', description:'负责收集、清洗和整理经济数据，确保其准确性。'}, {name:'研究助理', description:'协助经济学家进行资料搜集和数据处理。'}, {name:'政府统计部门科员', description:'在统计局等部门负责经济数据的统计和发布。'}], companies: ['国家统计局', '高校经济学院', '金融机构研究部'] },
+                    '金融学': { careers: [{name:'银行柜员', description:'为客户提供准确、友好的日常银行服务。'}, {name:'客户服务经理(银行)', description:'处理客户的咨询和投诉，提升客户满意度。'}, {name:'保险理赔员', description:'处理保险索赔申请，为客户提供支持。'}], companies: ['各大商业银行', '保险公司', '企业财务部'] },
+                    '法学': { careers: [{name:'法律秘书', description:'为律师提供专业的行政和文书支持。'}, {name:'律师助理', description:'协助律师进行案件研究、文件准备和客户沟通。'}, {name:'法院书记员', description:'在法庭上准确记录庭审过程。'}], companies: ['律师事务所', '法院', '企业法务部'] },
+                    '人力资源': { careers: [{name:'人力资源专员(入职/员工关怀)', description:'负责新员工的入职流程，并组织员工关怀活动。'}, {name:'薪酬福利专员', description:'细致地负责员工薪资和福利的计算与管理。'}, {name:'培训助理', description:'负责培训课程的后勤安排和协调工作。'}], companies: ['各类公司的人力资源部', '特别是稳定的大型企业'] }
+                }
+            },
+            'ESTJ': {
+                name: '总经理',
+                companyCulture: '适合在<strong>有明确等级制度、强调效率和执行力</strong>的环境中工作。他们是天生的管理者。',
+                professionalPaths: {
+                    '计算机科学': { careers: [{name:'项目经理(技术)', description:'运用结构化的方法来规划、执行和交付技术项目。'}, {name:'IT总监', description:'负责公司IT部门的整体运营和管理。'}, {name:'交付经理', description:'负责确保向客户成功交付产品或服务。'}], companies: ['传统行业IT部门', '系统集成商', '埃森哲'] },
+                    '软件工程': { careers: [{name:'工程经理', description:'领导工程团队，确保按计划完成开发任务。'}, {name:'项目管理办公室(PMO)经理', description:'制定和监督公司的软件开发流程和标准。'}, {name:'质量保证(QA)总监', description:'负责整个软件产品的质量管理和测试策略。'}], companies: ['Microsoft', 'Oracle', 'SAP', '金融科技公司'] },
+                    '数据科学': { careers: [{name:'数据部门经理', description:'领导数据团队，确保数据项目按时交付并产生业务价值。'}, {name:'数据治理总监', description:'负责制定和执行公司的数据标准、政策和流程。'}, {name:'商业智能(BI)总监', description:'领导BI团队，为公司管理层提供可靠的数据报告和决策支持。'}], companies: ['大型零售商', '银行', '制造业', '咨询公司'] },
+                    '统计学': { careers: [{name:'数据分析总监', description:'领导数据分析团队，确保分析结果的准确性和业务相关性。'}, {name:'风险管理总监', description:'运用统计模型来管理和控制公司的信用或市场风险。'}, {name:'运营分析经理', description:'通过数据分析来监控和优化公司的运营效率。'}], companies: ['Capital One', 'American Express', '京东', '顺丰'] },
+                    '设计学': { careers: [{name:'设计项目总监', description:'管理大型、复杂的设计项目，确保按时按预算交付。'}, {name:'生产经理(设计相关)', description:'管理设计产品的生产和制造流程。'}, {name:'施工管理', description:'负责建筑工地的现场管理和监督。'}], companies: ['房地产公司', '建筑公司', '制造业'] },
+                    '心理学': { careers: [{name:'工业与组织心理学家', description:'将心理学原理应用于工作场所，以提高生产力和员工福祉。'}, {name:'管理顾问(人力资本)', description:'为企业提供关于人才管理、领导力评估的咨询。'}, {name:'绩效管理体系设计师', description:'设计和实施客观、高效的员工绩效评估系统。'}], companies: ['咨询公司', '大型企业的人力资源或组织发展部门'] },
+                    '市场营销': { careers: [{name:'销售总经理', description:'负责整个销售部门的战略、运营和业绩。'}, {name:'大区经理', description:'管理一个特定区域的销售和市场活动。'}, {name:'渠道总监', description:'负责开发和管理公司的分销渠道和合作伙伴。'}], companies: ['快消品公司(如可口可乐)', '汽车行业', '医药代表公司'] },
+                    '广告学': { careers: [{name:'广告公司总经理', description:'负责广告公司的全面运营管理。'}, {name:'媒介总监', description:'负责管理公司的广告预算和媒介购买策略。'}, {name:'广告销售总监', description:'领导团队向客户销售广告资源。'}], companies: ['大型广告集团', '媒体平台(如电视台, 网站)', '品牌方'] },
+                    '新闻传播': { careers: [{name:'媒体运营总监', description:'负责媒体公司的日常运营、预算和人员管理。'}, {name:'发行总监', description:'负责报纸、杂志等出版物的发行和渠道管理。'}, {name:'广告销售总监', description:'领导团队向客户销售广告版面或时间。'}], companies: ['传统媒体集团', '出版社', '广告公司'] },
+                    '工商管理': { careers: [{name:'运营总监(COO)', description:'负责公司整体的日常运营和效率。'}, {name:'工厂厂长', description:'全面管理一个制造工厂的生产和运营。'}, {name:'项目总监', description:'负责公司级重大项目的成功交付。'}], companies: ['富士康', '格力电器', '中国建筑'] },
+                    '经济学': { careers: [{name:'合规总监', description:'确保公司（特别是金融机构）的运营严格遵守经济法规。'}, {name:'审计总监', description:'领导内部或外部审计团队，审查公司的财务和运营状况。'}, {name:'政府经济管理官员', description:'在政府部门负责经济政策的执行和监督。'}], companies: ['四大会计师事务所', '银行', '证监会', '政府部门'] },
+                    '金融学': { careers: [{name:'银行行长', description:'管理银行分行的日常运营和业务发展。'}, {name:'信贷审批主管', description:'领导团队评估和审批贷款申请。'}, {name:'财务总监(CFO)', description:'全面负责公司的财务管理和战略规划。'}], companies: ['中国工商银行', '建设银行', '大型企业'] },
+                    '法学': { careers: [{name:'检察官', description:'代表国家提起公诉，追究犯罪。'}, {name:'法官', description:'主持法庭审判，并依法作出判决。'}, {name:'首席合规官', description:'在公司中负责建立和监督合规体系的最高负责人。'}], companies: ['司法机关', '大型国企法务部', '管理完善的律所'] },
+                    '人力资源': { careers: [{name:'人力资源总监', description:'全面负责人力资源部门的运营和管理。'}, {name:'薪酬福利总监', description:'负责公司整体薪酬福利体系的战略和管理。'}, {name:'劳动关系经理', description:'负责处理与工会和员工代表的集体谈判和关系。'}], companies: ['制造业', '传统行业', '大型集团公司'] }
+                }
+            },
+            'ESFJ': {
+                name: '执政官',
+                companyCulture: '在<strong>充满社交互动、氛围友好、能关心和支持同事</strong>的环境中茁壮成长。',
+                professionalPaths: {
+                    '计算机科学': { careers: [{name:'客户成功经理(SaaS)', description:'主动帮助客户更好地使用软件产品，实现商业价值。'}, {name:'技术支持团队主管', description:'领导技术支持团队，提升客户满意度。'}, {name:'IT培训师', description:'为公司员工或客户提供技术产品的使用培训。'}], companies: ['Salesforce', 'Zoom', '企业IT培训部门'] },
+                    '软件工程': { careers: [{name:'项目协调员', description:'在软件开发项目中负责沟通、协调和会议安排。'}, {name:'客户支持工程师', description:'为客户提供友好、耐心的技术支持和问题解决方案。'}, {name:'Scrum Master', description:'作为服务型领导，帮助团队扫清障碍，实践敏捷开发。'}], companies: ['Atlassian', '大型软件公司的客户服务部门'] },
+                    '数据科学': { careers: [{name:'数据分析师(业务沟通方向)', description:'作为数据团队与业务团队的桥梁，解释数据结果并收集需求。'}, {name:'数据产品运营', description:'负责数据产品的用户沟通、问题解答和社区建设。'}, {name:'数据分析培训师', description:'为公司内部员工提供数据工具和数据思维的培训。'}], companies: ['互联网公司运营部门', '咨询公司', '企业大学'] },
+                    '统计学': { careers: [{name:'客户洞察分析师', description:'分析客户数据，并与市场和销售团队分享洞察。'}, {name:'市场调查项目经理', description:'负责管理市场调查项目的执行，与客户和供应商沟通。'}, {name:'数据报告专员', description:'负责制作和向管理层汇报定期的业务数据报告。'}], companies: ['尼尔森', '零售行业', '服务行业'] },
+                    '设计学': { careers: [{name:'客户经理(设计公司)', description:'作为客户与设计团队之间的桥梁，确保沟通顺畅。'}, {name:'设计项目协调员', description:'负责设计项目的日程安排、资源协调和沟通。'}, {name:'用户访谈主持人', description:'主持用户访谈，营造舒适的氛围让用户畅所欲言。'}], companies: ['设计公司的客户服务部门', '公关活动公司'] },
+                    '心理学': { careers: [{name:'学校心理辅导员', description:'关心学生的学业和心理健康，提供支持。'}, {name:'婚姻与家庭治疗师', description:'帮助家庭成员改善沟通，解决关系问题。'}, {name:'社工', description:'在社区中组织活动，为有需要的人提供实际帮助。'}], companies: ['中小学', '社区服务中心', '医院', '企业EAP部门'] },
+                    '市场营销': { careers: [{name:'销售经理', description:'领导销售团队，并通过团队合作达成目标。'}, {name:'客户关系经理', description:'负责维护大客户关系，提升客户忠诚度。'}, {name:'活动营销经理', description:'策划和执行能够促进人际交往的品牌活动。'}], companies: ['阿里巴巴', '雅诗兰黛', '海底捞'] },
+                    '广告学': { careers: [{name:'客户执行/经理(AE/AM)', description:'在广告公司负责客户的日常沟通、项目管理和关系维护。'}, {name:'活动策划与执行', description:'负责品牌线下推广活动或发布会的策划和执行。'}, {name:'媒介购买', description:'与媒体渠道沟通和谈判，为客户购买广告资源。'}], companies: ['奥美', '蓝色光标', '各大广告代理公司'] },
+                    '新闻传播': { careers: [{name:'公共关系专员/经理', description:'与媒体、公众和社区建立并维护良好的关系。'}, {name:'活动策划与执行', description:'策划和执行新闻发布会、客户答谢会等活动。'}, {name:'内部沟通经理', description:'负责加强公司内部的沟通和员工凝聚力。'}], companies: ['公关公司', '企业公关部', '非营利组织', '会展行业'] },
+                    '工商管理': { careers: [{name:'人力资源经理(招聘/员工关系)', description:'负责招聘新员工并维护和谐的员工关系。'}, {name:'行政总监', description:'负责公司的整体行政和后勤支持。'}, {name:'客户服务总监', description:'领导客户服务部门，全面提升客户体验。'}], companies: ['万豪酒店', '零售行业', '服务业'] },
+                    '经济学': { careers: [{name:'公共关系(经济议题)', description:'向公众和媒体解释公司的经济影响或财务状况。'}, {name:'投资者关系协调员', description:'协助组织财报会议和与投资者的沟通。'}, {name:'经济学教师', description:'在中学或社区大学教授经济学入门课程。'}], companies: ['上市公司', '公关公司', '教育机构'] },
+                    '金融学': { careers: [{name:'客户关系经理(银行/证券)', description:'与客户建立并维护长期的信任关系。'}, {name:'理财规划师', description:'关心客户的家庭和目标，为他们提供个性化的理财建议。'}, {name:'保险代理人', description:'为客户提供保险产品和服务，帮助他们规避风险。'}], companies: ['招商银行', '平安集团', '各大证券公司营业部'] },
+                    '法学': { careers: [{name:'家事律师', description:'处理离婚、继承等家庭法律事务，为客户提供情感支持。'}, {name:'社区律师', description:'为社区居民提供法律咨询和帮助。'}, {name:'客户关系经理(律所)', description:'负责维护律所的客户关系和满意度。'}], companies: ['专注于家事法的律所', '社区服务中心'] },
+                    '人力资源': { careers: [{name:'招聘专员/经理', description:'负责为公司招募合适的员工，并关注候选人体验。'}, {name:'员工关系经理', description:'负责处理员工的日常问题，组织团队活动，营造和谐氛围。'}, {name:'培训专员/经理', description:'负责组织和协调公司的培训活动。'}], companies: ['服务行业', '消费品行业', '任何重视员工关系的公司'] }
+                }
+            },
+            'ISTP': {
+                name: '鉴赏家',
+                companyCulture: '喜欢<strong>灵活、自由、能动手解决问题</strong>的环境。他们对理论不感兴趣，更喜欢直接上手操作。',
+                professionalPaths: {
+                    '计算机科学': { careers: [{name:'DevOps/SRE工程师', description:'自动化和优化软件开发和部署流程，解决实际问题。'}, {name:'网络安全工程师(渗透测试)', description:'模拟黑客攻击，找出并修复系统漏洞。'}, {name:'硬件工程师', description:'设计、开发和测试计算机硬件组件。'}], companies: ['思科', '英特尔', '大疆', '汽车电子公司'] },
+                    '软件工程': { careers: [{name:'嵌入式系统工程师', description:'为硬件设备编写和调试底层软件。'}, {name:'移动端(iOS/Android)性能优化工程师', description:'深入系统底层，解决移动应用的性能瓶颈。'}, {name:'技术支持专家(高级)', description:'解决客户遇到的最棘手、最底层的技术问题。'}], companies: ['Apple', 'Google', '小米', 'ARM'] },
+                    '数据科学': { careers: [{name:'数据工程师', description:'构建和维护高效、可靠的数据管道和基础设施。'}, {name:'机器学习运维(MLOps)工程师', description:'负责机器学习模型的部署、监控和维护。'}, {name:'数据可视化工程师', description:'使用D3.js等工具开发高度定制化的交互式数据可视化。'}], companies: ['Databricks', 'Snowflake', '大型互联网公司数据平台部'] },
+                    '统计学': { careers: [{name:'体育数据分析师', description:'分析比赛数据，为球队提供战术建议或为媒体提供评论。'}, {name:'A/B测试工具开发者', description:'开发和维护公司内部用于在线实验的平台和工具。'}, {name:'金融交易系统分析师', description:'分析和优化高频交易系统的性能。'}], companies: ['ESPN', 'NBA球队', '高频交易公司', '游戏公司'] },
+                    '设计学': { careers: [{name:'工业设计师', description:'设计和开发从汽车到家电等各类工业产品。'}, {name:'产品设计师(手版制作)', description:'亲手制作产品原型，以测试和验证设计。'}, {name:'交通工具设计师', description:'设计汽车、摩托车、自行车等交通工具的外观和结构。'}], companies: ['戴森', '博世', '汽车制造商', 'GoPro'] },
+                    '心理学': { careers: [{name:'人因工程学专家', description:'研究人与机器的交互，优化产品的可用性和安全性。'}, {name:'实验设备技术员', description:'负责心理学或神经科学实验室的精密仪器的操作和维护。'}, {name:'运动心理学顾问', description:'帮助运动员在高压环境下保持冷静和专注。'}], companies: ['大型科技公司(硬件)', '高校实验室', '体育国家队', '司法部门'] },
+                    '市场营销': { careers: [{name:'技术营销工程师', description:'向潜在客户演示和解释复杂技术产品的优势。'}, {name:'产品评测专家', description:'对电子产品等进行深入、客观的动手评测。'}, {name:'营销工具开发者', description:'为营销团队开发和维护内部使用的软件工具。'}], companies: ['科技媒体', '硬件公司市场部', '汽车品牌'] },
+                    '广告学': { careers: [{name:'广告技术(AdTech)工程师', description:'开发和维护广告投放、竞价和监测系统。'}, {name:'创意技术专家(Creative Technologist)', description:'在广告公司用技术手段实现创新的广告形式。'}, {name:'数据监测与归因工程师', description:'开发工具来追踪和分析广告投放的效果。'}], companies: ['Google', 'The Trade Desk', 'R/GA', 'AKQA'] },
+                    '新闻传播': { careers: [{name:'摄影记者/摄像师', description:'在新闻现场进行拍摄，捕捉关键瞬间。'}, {name:'广播/直播技术员', description:'负责电视台或直播活动的设备调试和技术保障。'}, {name:'无人机航拍摄影师', description:'使用无人机进行新闻或影视拍摄。'}], companies: ['电视台', '新闻机构', '科技媒体', '影视制作公司'] },
+                    '工商管理': { careers: [{name:'运营经理(技术/制造)', description:'负责技术或制造部门的日常运营和问题解决。'}, {name:'供应链问题解决专家', description:'应对和解决供应链中出现的紧急和复杂问题。'}, {name:'技术项目实施经理', description:'负责将技术解决方案在客户现场成功部署和实施。'}], companies: ['制造业', '物流业', '咨询公司(运营方向)'] },
+                    '经济学': { careers: [{name:'金融交易员', description:'基于对市场数据的快速分析和直觉做出交易决策。'}, {name:'市场微观结构研究员', description:'分析交易数据，研究市场订单和流动性。'}, {name:'加密货币交易员/分析师', description:'在快节奏的加密货币市场进行交易和分析。'}], companies: ['高频交易公司', '对冲基金', '加密货币交易所'] },
+                    '金融学': { careers: [{name:'交易员(高频/算法)', description:'利用技术和策略在快速变化的市场中进行交易。'}, {name:'金融工具开发者', description:'为交易员和分析师开发定制化的软件工具。'}, {name:'技术分析师', description:'通过图表和技术指标来分析和预测市场走势。'}], companies: ['高频交易公司', '对冲基金', '加密货币交易所'] },
+                    '法学': { careers: [{name:'法证技术分析师(数字取证)', description:'从电子设备中恢复和分析数据，为案件提供证据。'}, {name:'专利工程师', description:'利用技术背景来理解发明并撰写专利申请。'}, {name:'事故调查员', description:'调查事故原因，例如交通事故或工业事故。'}], companies: ['公安部门', '司法鉴定机构', '保险公司'] },
+                    '人力资源': { careers: [{name:'人力资源信息系统(HRIS)分析师', description:'负责HR系统的实施、维护和问题解决。'}, {name:'技术招聘专员', description:'专注于招聘工程师等技术人才。'}, {name:'安全培训师', description:'为员工提供生产安全、消防安全等实操培训。'}], companies: ['科技公司', '制造业HR部门', '人力资源软件公司'] }
+                }
+            },
+            'ISFP': {
+                name: '探险家',
+                companyCulture: '渴望一个<strong>轻松、自由、鼓励自我表达和审美</strong>的工作环境。他们不喜欢严格的规定和压力。',
+                professionalPaths: {
+                    '计算机科学': { careers: [{name:'前端开发(重视觉效果)', description:'专注于创造富有美感和流畅动效的用户界面。'}, {name:'UI/UX设计师', description:'设计既实用又充满美感的数字产品界面和体验。'}, {name:'游戏美术师', description:'为电子游戏创作角色、场景和特效等视觉元素。'}], companies: ['Apple', '游戏公司', '时尚电商', '数字艺术工作室'] },
+                    '软件工程': { careers: [{name:'UI工程师/动效工程师', description:'专注于实现富有创意和美感的界面交互和动画。'}, {name:'独立应用/游戏开发者', description:'独立或与小团队一起，创作能表达个人审美的作品。'}, {name:'创意编程(Creative Coding)', description:'使用代码作为画笔，进行艺术创作和互动装置。'}], companies: ['B站', '小红书', '各类创意工作室', '自由职业'] },
+                    '数据科学': { careers: [{name:'数据可视化设计师', description:'将数据转化为富有美感和故事性的视觉作品。'}, {name:'内容/时尚数据分析师', description:'分析流行趋势和内容数据，为创意提供灵感。'}, {name:'音乐推荐算法分析师', description:'分析用户听歌行为，优化音乐推荐体验。'}], companies: ['Tableau', '小红书', 'Spotify', '爱奇艺'] },
+                    '统计学': { careers: [{name:'用户体验(UX)研究员', description:'通过数据分析来理解用户对产品美学和体验的感受。'}, {name:'市场研究(生活方式)', description:'分析关于时尚、旅游、美食等领域的数据。'}, {name:'社交媒体数据分析师', description:'分析社交媒体上的流行趋势和用户情感。'}], companies: ['Chanel', 'LVMH', '大型MCN机构', '生活方式App'] },
+                    '设计学': { careers: [{name:'时装设计师', description:'设计和创作服装系列。'}, {name:'平面设计师', description:'进行标志、海报、包装等视觉设计。'}, {name:'摄影师', description:'通过镜头捕捉和创作影像。'}, {name:'室内设计师', description:'设计和规划室内空间的功能和美学。'}], companies: ['自由职业', '时尚杂志', '建筑设计事务所'] },
+                    '心理学': { careers: [{name:'艺术治疗师', description:'运用绘画、音乐、舞蹈等艺术媒介进行心理治疗。'}, {name:'游戏治疗师', description:'通过游戏的方式帮助儿童表达情感和解决问题。'}, {name:'表达性艺术治疗师', description:'综合运用多种艺术形式进行心理疗愈。'}], companies: ['心理治疗工作室', '儿童发展中心', '特殊教育学校'] },
+                    '市场营销': { careers: [{name:'视觉营销', description:'负责零售店的橱窗、陈列等视觉呈现。'}, {name:'时尚博主/KOL', description:'通过社交媒体分享个人风格和时尚见解。'}, {name:'内容创作者(视频/图片)', description:'创作高质量的摄影、视频等视觉内容。'}], companies: ['LVMH', '开云集团', 'MCN机构', '生活方式品牌'] },
+                    '广告学': { careers: [{name:'美术指导(Art Director)', description:'负责广告的整体视觉表现和美术风格。'}, {name:'广告摄影师/导演', description:'负责拍摄高质量的广告图片和视频。'}, {name:'社交媒体内容策划', description:'为品牌在社交媒体上策划富有美感的视觉内容。'}], companies: ['顶级广告公司的创意部门', '时尚杂志', '品牌方'] },
+                    '新闻传播': { careers: [{name:'摄影师/摄像师', description:'为杂志、广告或个人创作具有艺术感的影像作品。'}, {name:'视频剪辑师/后期制作', description:'对影片进行剪辑、调色和特效制作。'}, {name:'生活方式博主/KOL', description:'通过博客、Vlog等形式分享美食、旅行、家居等内容。'}], companies: ['自由职业', 'MCN机构', '影视制作公司', '广告公司'] },
+                    '工商管理': { careers: [{name:'画廊经理', description:'负责艺术画廊的日常运营和展览策划。'}, {name:'精品酒店老板', description:'创立和经营具有独特风格的精品酒店。'}, {name:'独立品牌创始人', description:'创立和运营自己的时尚、设计或生活方式品牌。'}], companies: ['艺术画廊', '精品酒店', '独立设计师品牌'] },
+                    '经济学': { careers: [{name:'艺术品市场分析师', description:'分析艺术品市场的价格趋势和投资价值。'}, {name:'时尚产业分析师', description:'研究时尚产业的经济规模和商业模式。'}, {name:'体验经济研究员', description:'研究旅游、娱乐等体验式消费的经济价值。'}], companies: ['佳士得', '苏富比', '时尚商业媒体', '咨询公司'] },
+                    '金融学': { careers: [{name:'艺术品投资顾问', description:'为客户提供关于艺术品市场的投资建议。'}, {name:'奢侈品分析师', description:'研究和分析奢侈品行业的市场趋势和品牌价值。'}, {name:'消费金融产品设计师', description:'设计符合年轻和时尚人群需求的金融产品。'}], companies: ['佳士得', '苏富比', '高端财富管理机构'] },
+                    '法学': { careers: [{name:'时尚法律师', description:'为时尚品牌提供关于知识产权、合同等法律服务。'}, {name:'艺术法律师', description:'处理艺术品交易、版权和艺术家权益等法律事务。'}, {name:'娱乐法律师(经纪合同)', description:'起草和审查艺人、演员的经纪合同。'}], companies: ['专注于文创领域的律所', '时尚集团法务部'] },
+                    '人力资源': { careers: [{name:'雇主品牌设计师', description:'负责设计招聘广告、网站等，塑造有吸引力的雇主形象。'}, {name:'员工活动策划', description:'策划和组织富有创意和美感的公司年会、团队建设等活动。'}, {name:'办公室环境设计师', description:'负责优化办公空间的设计，提升员工体验。'}], companies: ['创意型公司', '互联网公司', '设计公司'] }
+                }
+            },
+            'ESTP': {
+                name: '企业家',
+                companyCulture: '在<strong>快节奏、充满竞争和即时反馈</strong>的环境中如鱼得水。他们喜欢冒险和挑战。',
+                professionalPaths: {
+                    '计算机科学': { careers: [{name:'销售工程师', description:'结合技术知识和销售技巧，向客户销售复杂的技术产品。'}, {name:'商业拓展(BD, 技术)', description:'为科技公司寻找新的市场和战略合作伙伴。'}, {name:'创业公司创始人(技术销售)', description:'作为创始人，亲自负责产品的早期销售和市场开拓。'}], companies: ['Oracle', 'Salesforce', '华为(销售)','创业公司'] },
+                    '软件工程': { careers: [{name:'技术销售(Pre-sales)工程师', description:'在销售前期向客户进行技术演示和方案设计。'}, {name:'黑客增长(Growth Hacking)工程师', description:'通过快速的技术实验来寻找用户增长的捷径。'}, {name:'敏捷开发流程中的“救火队员”', description:'快速解决开发过程中遇到的紧急技术难题。'}], companies: ['Snowflake', 'Palantir', '各类SaaS创业公司'] },
+                    '数据科学': { careers: [{name:'商业拓展(数据方向)', description:'向合作伙伴销售公司的数据产品或数据解决方案。'}, {name:'数据产品销售', description:'负责将公司的数据分析产品推向市场。'}, {name:'增长黑客', description:'利用数据分析和快速实验来驱动用户和收入增长。'}], companies: ['神策数据', 'GrowingIO', '互联网公司的商业化部门'] },
+                    '统计学': { careers: [{name:'体育博彩量化分析师', description:'开发模型来预测比赛结果并进行投注。'}, {name:'高频交易员', description:'在金融市场进行快速、大量的交易。'}, {name:'销售数据分析师', description:'分析销售数据，为销售团队提供策略建议。'}], companies: ['博彩公司', '对冲基金', '快速消费品公司'] },
+                    '设计学': { careers: [{name:'项目主管(设计公司)', description:'在设计或广告公司负责客户项目，推动执行。'}, {name:'客户总监', description:'负责与重要客户建立和维护关系。'}, {name:'品牌推广活动策划', description:'策划能够引起市场轰动的大型推广活动。'}], companies: ['广告公司', '活动策划公司', '商业地产'] },
+                    '心理学': { careers: [{name:'运动心理学家', description:'帮助运动员在比赛中保持最佳心理状态。'}, {name:'谈判顾问', description:'运用心理学技巧帮助客户在商业谈判中取得优势。'}, {name:'危机干预专家', description:'在紧急事件后为个人或组织提供即时的心理支持。'}], companies: ['专业运动队', '咨询公司', '警察/消防部门', '销售培训公司'] },
+                    '市场营销': { careers: [{name:'销售冠军', description:'在任何销售团队中都是业绩的佼佼者。'}, {name:'市场拓展(BD)', description:'负责开拓新客户、新市场和新合作。'}, {name:'危机公关', description:'在公司出现危机时，快速反应，处理公共关系。'}], companies: ['美团', '字节跳动', '链家', '公关公司'] },
+                    '广告学': { careers: [{name:'广告销售', description:'向客户销售媒体的广告版面或时间。'}, {name:'客户总监', description:'在广告公司负责大客户的业务增长和关系维护。'}, {name:'商务拓展(广告技术)', description:'为广告技术公司开拓新的客户和合作伙伴。'}], companies: ['字节跳动(商业化)', '腾讯广告', '大型广告代理'] },
+                    '新闻传播': { careers: [{name:'体育记者/解说员', description:'在赛场一线报道和评论体育赛事。'}, {name:'突发新闻记者', description:'第一时间赶赴新闻现场进行报道。'}, {name:'公关(危机处理专家)', description:'在负面事件发生时，代表公司或个人与媒体沟通。'}], companies: ['ESPN', 'CCTV5', '美联社', '顶级公关公司'] },
+                    '工商管理': { careers: [{name:'创业者', description:'从零到一创建和发展自己的企业。'}, {name:'业务发展总监', description:'负责公司整体的业务增长和市场扩张战略。'}, {name:'销售副总裁', description:'作为公司高管，领导整个销售部门。'}], companies: ['你自己的公司', '早期创业团队', 'Y Combinator'] },
+                    '经济学': { careers: [{name:'交易员', description:'在金融市场上进行股票、期货、外汇等产品的买卖。'}, {name:'风险投资分析师', description:'寻找和评估有高增长潜力的初创公司。'}, {name:'并购顾问', description:'为公司的合并和收购交易提供经济分析和建议。'}], companies: ['高盛', 'Jane Street', '红杉资本', '顶级投行'] },
+                    '金融学': { careers: [{name:'股票交易员', description:'在金融市场上快速做出买卖决策以获取利润。'}, {name:'风险投资分析师', description:'评估初创公司的潜力和风险，寻找投资机会。'}, {name:'并购(M&A)顾问', description:'在公司合并和收购交易中提供咨询服务。'}], companies: ['证券公司', '红杉资本', '真格基金', '投行'] },
+                    '法学': { careers: [{name:'诉讼律师(出庭)', description:'在法庭上进行辩论和质证，为客户争取权益。'}, {name:'体育/娱乐法律师', description:'处理体育明星或艺人的合同和商业纠纷。'}, {name:'谈判专家', description:'作为法律顾问参与重要的商业谈判。'}], companies: ['顶级律所诉讼部', '体育经纪公司'] },
+                    '人力资源': { careers: [{name:'校园招聘负责人', description:'在各大高校进行宣讲和招聘，吸引优秀毕业生。'}, {name:'销售招聘经理', description:'专注于为公司招募有冲劲、有能力的销售人才。'}, {name:'劳动关系谈判代表', description:'代表公司与工会进行集体合同的谈判。'}], companies: ['快速消费品公司', '销售型公司', '大型制造企业'] }
+                }
+            },
+            'ESFP': {
+                name: '表演者',
+                companyCulture: '喜欢<strong>充满乐趣、社交频繁、氛围活跃</strong>的环境。他们善于调动气氛。',
+                professionalPaths: {
+                    '计算机科学': { careers: [{name:'产品演示专家', description:'以富有感染力的方式向客户和公众演示产品功能。'}, {name:'直播技术支持', description:'确保直播活动的音视频效果和互动流程顺畅。'}, {name:'用户社区运营经理', description:'组织线上线下活动，营造活跃有趣的社区氛围。'}], companies: ['抖音', 'B站', '游戏公司', 'MCN机构'] },
+                    '软件工程': { careers: [{name:'前端开发工程师(重交互)', description:'专注于创造有趣、好玩的网页和应用交互效果。'}, {name:'开发者关系(DevRel)', description:'作为技术社区的明星，通过演讲和活动吸引开发者。'}, {name:'用户界面(UI)动效设计师', description:'为APP和网站设计生动活泼的动画效果。'}], companies: ['TikTok', 'Snapchat', '各类社交和娱乐App'] },
+                    '数据科学': { careers: [{name:'数据可视化设计师', description:'将数据转化为生动、有趣、易于传播的视觉故事。'}, {name:'社交媒体数据分析师', description:'分析社交媒体上的热点和趋势，为内容创作提供灵感。'}, {name:'用户增长(活动方向)', description:'通过数据分析来策划和评估拉新、促活等线上活动。'}], companies: ['小红书', 'B站', 'MCN机构', '品牌市场部'] },
+                    '统计学': { careers: [{name:'市场研究(消费者洞察)', description:'通过焦点小组、问卷等方式了解消费者的潮流和偏好。'}, {name:'社交媒体分析师', description:'分析社交媒体数据，衡量品牌活动的影响力。'}, {name:'电视/流媒体收视率分析师', description:'分析观众数据，为节目制作和排期提供建议。'}], companies: ['尼尔森', '快手', '爱奇艺', '芒果TV'] },
+                    '设计学': { careers: [{name:'活动设计师', description:'为派对、发布会、婚礼等活动设计整体的视觉和空间。'}, {name:'舞台设计师', description:'为戏剧、演唱会等表演设计舞台布景。'}, {name:'视觉陈列师', description:'在零售店铺中通过商品陈列来创造吸引力。'}], companies: ['活动策划公司', '电视台', '零售品牌'] },
+                    '心理学': { careers: [{name:'戏剧治疗师', description:'运用戏剧和角色扮演等技巧进行心理治疗。'}, {name:'团队建设引导师', description:'设计和带领有趣的团队活动，以增强团队凝聚力。'}, {name:'儿童游戏治疗师', description:'通过游戏的方式帮助儿童解决情感和行为问题。'}], companies: ['团队建设公司', '儿童发展中心', '市场研究公司'] },
+                    '市场营销': { careers: [{name:'时尚博主', description:'在社交媒体上分享穿搭和生活方式，引领潮流。'}, {name:'品牌大使', description:'作为品牌的代言人，参加各种公关和市场活动。'}, {name:'体验式营销专家', description:'创造让消费者能够亲身参与和感受的品牌体验。'}, {name:'直播带货负责人', description:'策划和执行直播电商活动，对销售额负责。'}], companies: ['LVMH', '开云集团', 'MCN机构', 'Revolve'] },
+                    '广告学': { careers: [{name:'广告创意(视频/社交)', description:'构思和创作适合在抖音、B站等平台传播的病毒式广告。'}, {name:'KOL/网红营销经理', description:'负责与网红合作，进行品牌推广。'}, {name:'品牌活动策划', description:'策划和执行线下的品牌快闪店、派对等活动。'}], companies: ['字节跳动', 'MCN机构', '各类消费品牌', '广告公司'] },
+                    '新闻传播': { careers: [{name:'主持人/出镜记者', description:'在电视或网络节目中主持节目或进行现场报道。'}, {name:'视频博主/Vlogger', description:'制作和分享关于生活、旅行、美食等主题的视频。'}, {name:'活动主持人', description:'主持新闻发布会、商业活动或晚会。'}], companies: ['电视台', 'MCN机构', '公关公司', '自由职业'] },
+                    '工商管理': { careers: [{name:'娱乐/酒店/餐饮经理', description:'管理餐厅、酒店或娱乐场所的日常运营。'}, {name:'活动策划总监', description:'领导团队策划和执行大型商业或娱乐活动。'}, {name:'公关经理', description:'负责维护公司的公众形象和媒体关系。'}], companies: ['迪士尼', '长隆度假区', '高端邮轮公司', '海底捞'] },
+                    '经济学': { careers: [{name:'时尚/娱乐产业分析师', description:'分析和报道时尚或娱乐行业的商业动态。'}, {name:'旅游经济分析师', description:'研究旅游业的市场趋势和经济影响。'}, {name:'消费行为分析师', description:'结合经济学和心理学，分析人们的消费决策。'}], companies: ['时尚商业媒体', '咨询公司', '大型旅游公司'] },
+                    '金融学': { careers: [{name:'金融产品主播/KOL', description:'通过直播或短视频向大众普及金融知识和产品。'}, {name:'投资者关系活动策划', description:'策划和组织上市公司与投资者的交流活动。'}, {name:'保险销售明星', description:'通过出色的社交能力和亲和力销售保险产品。'}], companies: ['金融MCN', '券商财富管理部门', '保险公司'] },
+                    '法学': { careers: [{name:'娱乐法律师', description:'为电影、音乐、电视行业提供法律服务。'}, {name:'体育法律师', description:'处理运动员合同、转会和商业代言等法律事务。'}, {name:'品牌公关(法律背景)', description:'结合法律知识处理品牌声誉和危机公关。'}], companies: ['影视公司法务部', '体育经纪公司'] },
+                    '人力资源': { careers: [{name:'员工活动策划专员', description:'负责策划和执行公司年会、家庭日、团队旅游等活动。'}, {name:'企业文化大使', description:'在公司内部和外部积极推广公司的文化和价值观。'}, {name:'校园招聘专员', description:'在招聘会上与学生热情互动，吸引他们加入公司。'}], companies: ['互联网公司', '快速消费品公司', '娱乐行业'] }
+                }
+            }
+        };
+  </script>
+
+  <script>
+    // 获取 DOM 元素
+    const mbtiSelector = document.getElementById('mbti-selector');
+    const majorContainer = document.getElementById('major-selector-container');
+    const resultContainer = document.getElementById('result-container');
+    const mbtiButtons = document.querySelectorAll('.mbti-btn');
+
+    // 按钮通用样式
+    const styleButton = (btn) => {
+      btn.classList.add('p-4','text-center','rounded-lg','font-bold','transition','duration-300','ease-in-out','transform','hover:scale-105','cursor-pointer','focus:outline-none','focus:ring-2','focus:ring-offset-2','dark:focus:ring-offset-gray-800');
+    };
+    mbtiButtons.forEach(styleButton);
+
+    // MBTI 选择
+    mbtiSelector.addEventListener('click', (e) => {
+      const button = e.target.closest('.mbti-btn');
+      if (button) {
+        const mbtiType = button.dataset.mbti;
+        showMajorSelector(mbtiType);
+      }
+    });
+
+    // 显示专业选择器
+    function showMajorSelector(type) {
+      resultContainer.innerHTML = '';
+      majorContainer.innerHTML = `
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg fade-in">
+          <h2 class="text-2xl font-semibold mb-6 text-center"><span class="text-indigo-500">Step 2:</span> 请选择你的专业领域 (<span class="font-bold text-indigo-400">${type}</span>)</h2>
+          <div id="major-buttons" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            ${curatedMajors.map(major => `<button data-major="${major}" class="major-btn bg-indigo-100 text-indigo-800 hover:bg-indigo-200 dark:bg-indigo-900/50 dark:text-indigo-300 dark:hover:bg-indigo-900">${major}</button>`).join('')}
+          </div>
+        </div>
+      `;
+
+      const majorButtons = majorContainer.querySelectorAll('.major-btn');
+      majorButtons.forEach(btn => {
+        styleButton(btn);
+        btn.addEventListener('click', () => {
+          const selectedMajor = btn.dataset.major;
+          displayFinalResult(type, selectedMajor);
+        });
+      });
+
+      majorContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // 显示最终结果（带别名回退 + 终极回退）
+    function displayFinalResult(type, major) {
+      const data = mbtiData[type];
+
+      if (!data) {
+        resultContainer.innerHTML = `
+          <div class="bg-white dark:bg-gray-800 p-6 md:p-8 rounded-2xl shadow-lg fade-in">
+            <h2 class="text-2xl font-bold text-red-600">暂未收录该 MBTI 类型的数据：${type}</h2>
+            <p class="mt-4 text-gray-600 dark:text-gray-300">请先将完整的 mbtiData 粘贴到页面脚本中。</p>
+          </div>
+        `;
+        return;
+      }
+
+      let pathData = data.professionalPaths[major];
+      let aliasUsed = '';
+
+      if (!pathData) {
+        const base = majorAliasToBase[major];
+        if (base && data.professionalPaths[base]) {
+          pathData = data.professionalPaths[base];
+          aliasUsed = base;
+        } else {
+          pathData = data.professionalPaths['计算机科学'] || Object.values(data.professionalPaths)[0];
+        }
+      }
+
+      resultContainer.innerHTML = `
+        <div class="bg-white dark:bg-gray-800 p-6 md:p-8 rounded-2xl shadow-lg fade-in">
+          <div class="flex justify-between items-start mb-6">
+            <div>
+              <h2 class="text-3xl font-bold text-indigo-600 dark:text-indigo-400">${type} - ${data.name}</h2>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">你的选择: <strong>${major}</strong></p>
+              ${aliasUsed ? `<p class="text-xs text-gray-500 dark:text-gray-400 mt-1">为 <strong>${major}</strong> 提供的推荐基于 <strong>${aliasUsed}</strong> 的职业路径</p>` : ''}
+            </div>
+            <button id="reset-btn" class="text-sm bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 font-semibold py-2 px-4 rounded-lg transition duration-300">重新开始</button>
+          </div>
+
+          <div class="space-y-8 mt-8">
+            <div>
+              <h3 class="text-xl font-semibold mb-4 border-l-4 border-indigo-500 pl-3">🏢 理想文化氛围</h3>
+              <p class="text-gray-600 dark:text-gray-300 leading-relaxed">${data.companyCulture}</p>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold mb-4 border-l-4 border-green-500 pl-3">💼 针对性岗位推荐</h3>
+              <ul class="space-y-4">
+                ${pathData.careers.map(c => `
+                  <li class="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
+                    <h4 class="font-semibold text-green-800 dark:text-green-300">${c.name}</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">${c.description}</p>
+                  </li>
+                `).join('')}
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold mb-4 border-l-4 border-yellow-500 pl-3">🎯 相关公司匹配</h3>
+              <div class="flex flex-wrap gap-3">
+                ${pathData.companies.map(company => `<span class="bg-yellow-100 text-yellow-800 text-sm font-medium mr-2 px-3 py-1 rounded-full dark:bg-yellow-900 dark:text-yellow-300">${company}</span>`).join('')}
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      resultContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById('reset-btn').addEventListener('click', reset);
+    }
+
+    // 重置
+    function reset() {
+      majorContainer.innerHTML = '';
+      resultContainer.innerHTML = '';
+      mbtiSelector.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  </script>
+</body>
+</html>
